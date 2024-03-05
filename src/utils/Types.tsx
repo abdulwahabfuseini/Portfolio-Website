@@ -37,3 +37,9 @@ export type ProjectProps = {
     desc: string,
     tools: {tool: string}[]
 }
+
+export interface Comment {
+    fullName: string;
+    description: string;
+  }
+  

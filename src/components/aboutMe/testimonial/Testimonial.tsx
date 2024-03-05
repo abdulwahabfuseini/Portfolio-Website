@@ -12,12 +12,13 @@ import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { Comment } from "@/utils/Types";
 
 const Testimonial = () => {
   const [openLeft, setOpenLeft] = useState(false);
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [records, setRecords] = useState([]);
+  const [records, setRecords] = useState<Comment[]>([]);
 
   const openDrawerLeft = () => setOpenLeft(true);
   const closeDrawerLeft = () => setOpenLeft(false);
@@ -27,6 +28,7 @@ const Testimonial = () => {
       setLoading(true);
       const res = await fetch("/api/comment", {
         cache: "no-store",
+        method: "GET"
       });
 
       if (res.ok) {
@@ -35,6 +37,7 @@ const Testimonial = () => {
 
       const client = await res.json();
       console.log("🚀 ~ file: page.jsx:33 ~ getComment ~ client:", client);
+      console.log("API Response:", client);
       setRecords(client);
 
       setTimeout(() => {
@@ -82,27 +85,31 @@ const Testimonial = () => {
                 }}
               >
                 <div>
-                  {/* {records.map((comment) => (
-                    <SwiperSlide key={comment._id} className="mt-6">
-                      <div className="relative">
-                        <FaQuoteLeft className="absolute top-0 text-3xl text-gray-400 left-3" />
-                        <div className="z-20 grid gap-2 p-3 place-items-center">
-                          <Image
-                            width={80}
-                            height={80}
-                            src="/SVG/man.png"
-                            alt="logo"
-                            className="object-contain rounded-full"
-                          />
-                          <h1 className="text-lg font-semibold text-green-600 capitalize">
-                            {comment.fullname}
-                          </h1>
-                          <p>{comment.description}</p>
+                  {Array.isArray(records) && records.length > 0 ? (
+                    records.map((comment, index) => (
+                      <SwiperSlide key={index} className="mt-6">
+                        <div className="relative">
+                          <FaQuoteLeft className="absolute top-0 text-3xl text-gray-400 left-3" />
+                          <div className="z-20 grid gap-2 p-3 place-items-center">
+                            <Image
+                              width={80}
+                              height={80}
+                              src="/SVG/man.png"
+                              alt="logo"
+                              className="object-contain rounded-full"
+                            />
+                            <h1 className="text-lg font-semibold text-green-600 capitalize">
+                              {comment?.fullName}
+                            </h1>
+                            <p>{comment?.description}</p>
+                          </div>
+                          <FaQuoteRight className="absolute bottom-0 text-3xl text-gray-400 right-3" />
                         </div>
-                        <FaQuoteRight className="absolute bottom-0 text-3xl text-gray-400 right-3" />
-                      </div>
-                    </SwiperSlide>
-                  ))} */}
+                      </SwiperSlide>
+                    ))
+                  ) : (
+                    <p>No comments available</p>
+                  )}
                 </div>
               </Swiper>
             )}
@@ -121,7 +128,6 @@ const Testimonial = () => {
             placement="left"
             open={openLeft}
             onClose={closeDrawerLeft}
-            
             className="grid items-center shadow-xl p-4 bg-main shadow-blue-500/10 justify-normal"
           >
             <ReviewForm />
