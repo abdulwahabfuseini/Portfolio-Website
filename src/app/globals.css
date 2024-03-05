@@ -1,33 +1,149 @@
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Text&family=Nanum+Gothic+Coding&family=PT+Serif&family=Playfair+Display&family=Slabo+27px&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@layer base {
+  h2,
+  h4,
+  h5,
+  h6 {
+    font-family: "Slabo 27px", serif;
+  }
+
+  header,
+  a,
+  button {
+    font-family: "PT Serif", serif;
+  }
+
+  h1{
+    font-family: "Playfair Display", serif;
+  }
+
+  .flexBox {
+    @apply flex items-center justify-between;
+  }
+  .flexCol {
+    @apply flex items-center flex-col gap-y-6;
+  }
+  .flexRow {
+    @apply flex items-center gap-x-6;
+  }
+  .primaryBtn {
+    @apply border rounded-lg py-2 px-4;
+  }
+}
+/* ==== Css Gradient Colors =====  */
+.red-background {
+  background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+.black-background {
+  background: linear-gradient(90deg, #182848 0%, #4b6cb7 100%);
+}
+
+.yellow-background {
+  background: linear-gradient(90deg, #c67700 0%, #fcff9e 100%);
+}
+
+.green-background {
+  background: linear-gradient(90deg, #3ad59f 0%, #f8ff00 100%);
+}
+
+.light-background {
+  background: linear-gradient(90deg, #00c9ff 0%, #92fe9d 100%);
+}
+
+.aqua-background {
+  background: linear-gradient(90deg, #3a47d5 0%, #00d2ff 100%);
+}
+
+.Text {
+  color: blue;
+  background: linear-gradient(90deg, #00c9ff 0%, #92fe9d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+}
+
+
+
+.bounce{
+    animation: movement 3s infinite 1s ease-in-out;
+}
+@keyframes movement{
+    0%{
+        transform: translateY(0);
+    }
+    60%{
+        transform: translateY(40px);
+    }
+    100%{
+        transform: translateY(20px);
+    }
+}
+
+ .animate{
+  position: relative;
+  padding: 8px 0;
+}
+ .animate span{
+  font-weight: 800; 
+  color: transparent;
+  -webkit-text-stroke: .40px blue;
+  background: linear-gradient(90deg, #00c9ff 0%, #92fe9d 100%);
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-position: -28rem 0;
+  animation: textanimate 5s linear infinite 1.4s;
+}
+@keyframes textanimate{
+  0%, 10%, 100%{
+      background-position: -28rem 0;
+  }
+  65%, 85%{
+      background-position: 0 0;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
+/* ==== Card Loading ====  */
+.cardloader {
+  height: 200px;
+  display: block;
+  margin: auto;
+  position: relative;
+  box-sizing: border-box;
+}
+.cardloader::after {
+  content: "";
+  width: calc(100% - 1px);
+  height: calc(100% - 1px);
+  top: 15px;
+  left: 1px;
+  position: absolute;
+  background-image: linear-gradient(
+      90deg,
       transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+      rgba(255, 255, 255, 0.5) 50%,
+      transparent 100%
+    ),
+    linear-gradient(#ddd 110px, transparent 0),
+    linear-gradient(#ddd 24px, transparent 0),
+    linear-gradient(#ddd 90px, transparent 0);
+  background-repeat: no-repeat;
+  background-size: 75px 175px, 100% 100px, 100% 16px, 100% 30px;
+  background-position: -185px 0, center 0, center 115px, center 142px;
+  box-sizing: border-box;
+  animation: animloader 1s linear infinite;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@keyframes animloader {
+  to {
+    background-position: 185px 0, center 0, center 115px, center 142px;
   }
 }
+
+
+
