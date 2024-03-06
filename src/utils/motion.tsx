@@ -237,3 +237,17 @@ export const slideInFromBottom = (delay: number): SlideInFromDirection => {
     },
   };
 };
+
+export const slideInFromTop = (delay: number): SlideInFromDirection => {
+  return {
+    hidden: { y: -100, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        delay: delay,
+        duration: 0.5,
+      },
+    },
+  };
+};

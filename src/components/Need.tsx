@@ -5,11 +5,11 @@ import { Typewriter } from "react-simple-typewriter";
 const Need = () => {
   return (
     <div>
-      <p className="text-2xl font-semibold">
+      <h1 className="text-2xl font-semibold">
         Nead a{" "}
         <span className="Text">
           <Typewriter
-            words={["Website ...", "Web Developer ...", "Web App ..."]}
+            words={["Website ?", "Web Developer ?", "Web App ?"]}
             loop={Infinity}
             cursor
             cursorStyle="|"
@@ -17,7 +17,7 @@ const Need = () => {
             deleteSpeed={90}
           />
         </span>
-      </p>
+      </h1>
     </div>
   );
 };

@@ -3,8 +3,8 @@ import Pricing from "@/components/service/pricing/Pricing";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "PortFolio | Services",
-  description: "WHAT I CAN DO",
+  title: "PortFolio | What I  do",
+  description: "WHAT I DO",
 };
 
 const Services = () => {

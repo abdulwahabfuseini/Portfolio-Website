@@ -48,13 +48,13 @@ export const connect = [
 export const ContactInfo = [
   {
     id: 1,
-    title: "Email",
+    title: "E-mail",
     icon: "gmail.png",
     email: "abdulwahabfuseini78@gmail.com",
   },
   {
     id: 2,
-    title: "Phone",
+    title: "Phone Number",
     icon: "call.png",
     phone: "+233 24 526 4999",
   },

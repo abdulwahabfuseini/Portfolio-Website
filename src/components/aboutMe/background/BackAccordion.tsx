@@ -1,9 +1,10 @@
+"use client"
+
 import React, { useState } from "react";
 import {
   Accordion,
   AccordionHeader,
   AccordionBody,
-  Typography,
 } from "@material-tailwind/react";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa";
 

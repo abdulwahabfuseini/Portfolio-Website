@@ -6,25 +6,29 @@ import { navigate } from "../../assets/navigation";
 import { VscChevronRight } from "react-icons/vsc";
 import Link from "next/link";
 import { Drawer } from "@material-tailwind/react";
+import { motion } from "framer-motion";
+import { slideInFromBottom } from "@/utils/motion";
 
 const MobileNav = () => {
   const [openNav, setOpenNav] = useState(false);
+
 
   const openDrawer = () => setOpenNav(true);
   const closeDrawer = () => setOpenNav(false);
 
 
   return (
-    <div className="flex lg:hidden">
+    <motion.div initial="hidden" animate="visible" className="flex lg:hidden">
       <button onClick={openDrawer} className="">
         <HiMiniBars3BottomRight className="w-8 h-8 " />
       </button>
+      <motion.div variants={slideInFromBottom(2.5)}>
       <Drawer
         placeholder={""}
         placement="bottom"
         open={openNav}
         onClose={closeDrawer}
-        className="grid items-center z-50 transition-all ease-in rounded-t-xl pt-3 px-2 bg-white text-black shadow-2xl shadow-blue-500/10 justify-normal"
+        className="grid items-center z-50  rounded-t-xl pt-3 px-2 bg-white text-black shadow-2xl shadow-blue-500/10 justify-normal"
       >
         {navigate.map((navLink) => (
           <li
@@ -44,7 +48,9 @@ const MobileNav = () => {
           </li>
         ))}
       </Drawer>
-    </div>
+      </motion.div>
+      
+    </motion.div>
   );
 };
 

@@ -38,9 +38,9 @@ const PricingCard = ({ title, amount, service }: PriceProps) => {
     <div>
       <Card
         placeholder={null}
-        color="red"
+        color="gray"
         variant="gradient"
-        className="w-full  p-8"
+        className="w-full p-8 bg-main"
       >
         <CardHeader
           placeholder={null}
@@ -86,8 +86,7 @@ const PricingCard = ({ title, amount, service }: PriceProps) => {
             placeholder={null}
             onClick={() => router.push("/contact")}
             size="lg"
-            color="white"
-            className="hover:scale-[1.02] focus:scale-[1.02] active:scale-100"
+            className="hover:scale-[1.02] focus:scale-[1.02] active:scale-100 text-black font-semibold text-lg p-2 bg-white"
             ripple={false}
             fullWidth={true}
           >

@@ -23,10 +23,19 @@ const Hero = () => {
       >
         <motion.div variants={slideInFromLeft(1)}>
           <div>
-            <h1 className="text-lg capitalize lg:text-xl">
-              Welcome to my portfolio
-            </h1>
-            <h3 className="text-2xl lg:text-3xl animate">
+          <div className="flex items-center gap-3 pb-3">
+            <h1 className="text-4xl">Hello</h1>
+            <Image
+              src="/SVG/wave.png"
+              alt="hand"
+              width={50}
+              quality={100}
+              objectFit="contain"
+              height={20}
+              draggable="false"
+            />
+          </div>
+            <h3 className="text-2xl lg:text-3xl animateText">
               <span> I'm Fuseini Abdul Wahab,</span>
             </h3>
             <h4 className="text-2xl font-bold lg:text-4xl">
@@ -45,7 +54,7 @@ const Hero = () => {
             I've designed web applications with user experience at the
             forefront, ensuring seamless navigation and intuitive interactions
           </p>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-x-4">
             <Button url="/contact" text="Hire Me" />
             <Button url="/about" text="About Me" />
           </div>

@@ -4,7 +4,6 @@ import {
   Accordion,
   AccordionHeader,
   AccordionBody,
-  Typography,
 } from "@material-tailwind/react";
 import { useState } from "react";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa";
@@ -12,32 +11,30 @@ import { FaChevronUp, FaChevronDown } from "react-icons/fa";
 const AccordionTab = () => {
   const [open, setOpen] = useState(1);
 
-
   const handleOpen = (value: any) => setOpen(open === value ? 0 : value);
 
   return (
     <div className="py-3">
-      <Accordion placeholder={null} open={open === 1} className="mb-2 rounded-lg ">
-        <AccordionHeader placeholder={null}
-          onClick={() => 
-            handleOpen(1)
-           
-          }
-          className={`bg-main px-3 w-full transition-colors fx items-center justify-between ${
+      <Accordion
+        placeholder={null}
+        open={open === 1}
+        className="mb-2 rounded-lg "
+      >
+        <AccordionHeader
+          placeholder={null}
+          onClick={() => handleOpen(1)}
+          className={`bg-main px-3 sm:px-5 w-full transition-colors justify-between ${
             open === 1 ? "text-blue-500 hover:!text-blue-700" : ""
           }`}
         >
-          <div
-            
-            className="flex items-start justify-between w-full"
-          >
-            <div>
-              WEBDRAFT IT SOLUTION - KUMASI, GHANA <br />
+          <div className="flex items-start justify-between gap-4 w-full">
+            <div className="flex text-lg flex-col text-left items-start">
+              WEBDRAFT IT SOLUTION - KUMASI, GHANA
               <h4 className="text-base">ROLE: INTERN</h4>
               <h2 className="text-base">FEBRUARY, 2023 - SEPTEMBER, 2023</h2>
             </div>
             <button className="text-xl">
-            <button>{open === 1 ? <FaChevronUp /> : < FaChevronDown />}</button>
+              {open === 1 ? <FaChevronUp /> : <FaChevronDown />}
             </button>
           </div>
         </AccordionHeader>
@@ -68,26 +65,27 @@ const AccordionTab = () => {
           </ul>
         </AccordionBody>
       </Accordion>
-      <Accordion placeholder={null} open={open === 2} className="mb-2 rounded-lg">
-        <AccordionHeader placeholder={null}
-           onClick={() => 
-            handleOpen(2)
-           
-          }
-          className={`bg-main px-3 transition-colors ${
+      <Accordion
+        placeholder={null}
+        open={open === 2}
+        className="mb-2 rounded-lg"
+      >
+        <AccordionHeader
+          placeholder={null}
+          onClick={() => handleOpen(2)}
+          className={`bg-main px-3 sm:px-5 transition-colors ${
             open === 2 ? "text-blue-500 hover:!text-blue-700" : ""
           }`}
         >
-          <div
-            
-            className="flex items-start justify-between w-full"
-          >
-            <div>
+          <div className="flex items-start justify-between w-full gap-4">
+            <div className="flex text-lg flex-col text-left items-start">
               AVENTLE TECHNOLOGIES – KUMASI, GHANA
               <h4 className="text-base">ROLE: FREELANCER</h4>
               <h2 className="text-base">AUGUST, 2022 - DECEMBER, 2022</h2>
             </div>
-            <button>{open === 2 ? <FaChevronUp /> : < FaChevronDown />}</button>
+            <button className="text-xl">
+              {open === 2 ? <FaChevronUp /> : <FaChevronDown />}
+            </button>
           </div>
         </AccordionHeader>
         <AccordionBody className=" px-1.5 text-base font-normal bg-main">

@@ -79,7 +79,7 @@ const Project = () => {
             <div>
               <motion.div variants={slideInFromBottom(0.6)} className="w-full">
                 {toggleTab === 1 && (
-                  <div className="grid w-full gap-3 py-10 grid-auto-fit-xl">
+                  <div className="grid w-full gap-3 py-10 grid-auto-fit-lg">
                     {PortFolio.map((project) => (
                       <ProjectCard
                         key={project.id}

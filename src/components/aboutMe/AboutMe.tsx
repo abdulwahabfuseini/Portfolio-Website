@@ -35,8 +35,8 @@ const AboutMe = () => {
   }, [filter]);
 
   return (
-    <div className="py-8 md:py-28">
-      <HeadTitle title="About Me" text="About" />
+    <div className="pt-16 md:pt-28 pb-32">
+      <HeadTitle title="Biography" text="About Me" />
       <div className="grid max-w-xl grid-cols-2 gap-3 px-6 mx-auto sm:grid-cols-4 sm:bg-glass place-content-center sm:p-1">
         <button
           onClick={() => setFilter("Background")}
@@ -46,7 +46,7 @@ const AboutMe = () => {
               : "bg-glass sm:bg-transparent py-2 sm:p-1.5 text-lg"
           }
         >
-          Profile
+          Biography
         </button>
         <button
           onClick={() => setFilter("Skills")}
@@ -82,9 +82,9 @@ const AboutMe = () => {
       <motion.div
         initial="hidden"
         animate="visible"
-        className="flex flex-col-reverse items-center py-3 sm:py-0 sm:grid sm:grid-cols-3 sm:gap-x-8 lg:gap-x-20 "
+        className="flex flex-col-reverse items-center py-3 sm:py-0 sm:grid sm:grid-cols-3 sm:gap-x-8 lg:gap-x-14 "
       >
-        <div className="col-span-1 py-4">
+        <div className="col-span-1">
           {filter === "Background" && (
             <motion.div variants={slideInFromLeft(1)}>
               {loading ? (
@@ -93,8 +93,8 @@ const AboutMe = () => {
                 <Image
                   src="/SVG/profile.png"
                   alt=""
-                  width={600}
-                  height={600}
+                  width={500}
+                  height={500}
                   objectFit="contain"
                   quality={100}
                   draggable="false"
@@ -110,8 +110,8 @@ const AboutMe = () => {
                 <Image
                   src="/SVG/programming.png"
                   alt=""
-                  width={600}
-                  height={600}
+                  width={700}
+                  height={700}
                   quality={100}
                   className="object-contain w-full bounce"
                   draggable="false"
@@ -144,8 +144,8 @@ const AboutMe = () => {
                 <Image
                   src="/SVG/experience.png"
                   alt=""
-                  width={600}
-                  height={600}
+                  width={800}
+                  height={800}
                   quality={100}
                   className="object-contain"
                   draggable="false"

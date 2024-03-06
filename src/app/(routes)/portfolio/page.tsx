@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
     title: "PortFolio | Latest Projects",
-    description: "LATEST PROJECT",
+    description: "EXPLORE MY LATEST PROJECT",
   };
   
 const Portfolio = () => {

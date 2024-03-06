@@ -15,7 +15,7 @@ const HeadTitle = ({ title, text }: HeadProps) => {
           {title}
         </h2>
       </div>
-      <h3 className="text-5xl uppercase lg:text-6xl animate">
+      <h3 className="text-5xl uppercase lg:text-6xl animateText">
         <span>{text}</span>
       </h3>
       </motion.div>

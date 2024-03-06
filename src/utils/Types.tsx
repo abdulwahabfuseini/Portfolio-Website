@@ -38,8 +38,9 @@ export type ProjectProps = {
     tools: {tool: string}[]
 }
 
-export interface Comment {
+export type Comment = {
     fullName: string;
+    email: string
     description: string;
   }
   

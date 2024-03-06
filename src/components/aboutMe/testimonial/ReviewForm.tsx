@@ -4,7 +4,7 @@ import { Button, Form, Input } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { useState } from "react";
 
-const ReviewForm = () => {
+const ReviewForm = ({ openLeft }: any) => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [userDetails, setUserDetails] = useState({
@@ -25,7 +25,8 @@ const ReviewForm = () => {
         body: JSON.stringify(userDetails),
       });
       if (res.ok) {
-        form.resetFields();
+        form.resetFields(openLeft);
+        alert("Thank you for adding a testimonial");
       }
     } catch (error) {
       alert("Oooop!!! Something went wrong. Please try again");
@@ -99,7 +100,11 @@ const ReviewForm = () => {
           type="primary"
           className="h-12 text-lg font-semibold light-background"
         >
-          {loading ? <span>Loading...</span> : "Submit Review"}
+          {loading ? (
+            <span className="bg-white text-black">Submitting...</span>
+          ) : (
+            "Submit Review"
+          )}
         </Button>
       </Form>
     </div>

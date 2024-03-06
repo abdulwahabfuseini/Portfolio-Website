@@ -75,7 +75,7 @@
 }
 @keyframes movement{
     0%{
-        transform: translateY(0);
+        transform: translateY(10px);
     }
     60%{
         transform: translateY(40px);
@@ -85,20 +85,21 @@
     }
 }
 
- .animate{
+ .animateText{
   position: relative;
   padding: 8px 0;
 }
- .animate span{
+ .animateText span{
   font-weight: 800; 
   color: transparent;
-  -webkit-text-stroke: .40px blue;
+  -webkit-text-stroke: .60px  blue;
   background: linear-gradient(90deg, #00c9ff 0%, #92fe9d 100%);
   background-repeat: no-repeat;
   -webkit-background-clip: text;
   background-position: -28rem 0;
-  animation: textanimate 5s linear infinite 1.4s;
+  animation: textanimate 5s linear infinite 1.2s;
 }
+
 @keyframes textanimate{
   0%, 10%, 100%{
       background-position: -28rem 0;
