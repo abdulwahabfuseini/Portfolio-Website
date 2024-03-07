@@ -10,6 +10,10 @@ const ReviewSchema = new Schema(
       type: String,
       required: [true, "Email is required"],
     },
+    occupation: {
+      type: String,
+      required: [true, "Occupation is required"],
+    },
     description: {
       type: String,
       required: [true, "Description is required"],

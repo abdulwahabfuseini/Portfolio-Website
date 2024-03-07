@@ -1,6 +1,6 @@
 "use client";
 
-import {  useState } from "react";
+import { useState } from "react";
 import HeadTitle from "../../HeadTitle";
 import ReviewForm from "./ReviewForm";
 import { Drawer } from "@material-tailwind/react";
@@ -13,18 +13,11 @@ const Testimonial = () => {
   const openDrawerLeft = () => setOpenLeft(true);
   const closeDrawerLeft = () => setOpenLeft(false);
 
-
-
   return (
-    <div>
+    <div className="max-w-7xl mx-auto px-">
       <HeadTitle title="Testimonial" text="Clients" />
-      <div className="">
-        <div className="py-10">
-          <header className="text-3xl capitalize">
-            What my clients say about me
-          </header>
-          <Reviews />
-        </div>
+      <div>
+        <Reviews />
         <div>
           <button
             onClick={openDrawerLeft}

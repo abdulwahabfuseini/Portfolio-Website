@@ -38,9 +38,18 @@ export type ProjectProps = {
     tools: {tool: string}[]
 }
 
+export type CardProps = {
+    id: number,
+    imgUrl: string
+    projectName: string,
+    link: string,
+}
+
 export type Comment = {
+    _id?: string
     fullName: string;
     email: string
+    occupation:string
     description: string;
   }
   

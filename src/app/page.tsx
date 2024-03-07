@@ -1,9 +1,8 @@
-
 import type { Metadata } from "next";
 import AboutMe from "@/components/aboutMe/AboutMe";
 import Hero from "@/components/home/Hero";
-import Service from "@/components/service/Service";
-
+import HomeService from "@/components/home/homeService/HomeService";
+import HomeProject from "@/components/home/homeProjects/HomeProject";
 
 export const metadata: Metadata = {
   title: "Portfolio | FUSEINI ABDUL WAHAB",
@@ -15,7 +14,8 @@ export default function Home() {
     <div className="grid w-full h-full px-3 pt-8 pb-20 mx-auto sm:px-5 max-w-7xl">
       <Hero />
       <AboutMe />
-      <Service />
+      <HomeService />
+      <HomeProject />
     </div>
   );
 }

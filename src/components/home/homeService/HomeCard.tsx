@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 
-const ServiceCard = ({ id, title, gif, desc }: ServiceProps) => {
+const HomeCard = ({ id, title, gif, desc }: ServiceProps) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -63,4 +63,4 @@ const ServiceCard = ({ id, title, gif, desc }: ServiceProps) => {
   );
 };
 
-export default ServiceCard;
+export default HomeCard;

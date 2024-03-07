@@ -6,7 +6,7 @@ export const metadata: Metadata = {
     description: "EXPLORE MY LATEST PROJECT",
   };
   
-const Portfolio = () => {
+const Projects = () => {
   return (
      <>
       <Project />
@@ -14,4 +14,4 @@ const Portfolio = () => {
   )
 }
 
-export default Portfolio
+export default Projects

@@ -16,8 +16,8 @@ export const navigate = [
     },
     {
         id: 4,
-        display: "Portfolio",
-        path: "/portfolio"
+        display: "Projects",
+        path: "/projects"
     },
     {
         id: 5,

@@ -129,3 +129,38 @@ export const PortFolio = [
     ],
   },
 ];
+
+
+export const ProjectData = [
+  {
+    id: 1,
+    imgUrl: "pro6.png",
+    projectName: "Ghana.Gov Clone",
+    link: " https://ghana-gov-2a6e6.web.app",
+
+  },
+  {
+    id: 2,
+    imgUrl: "pro4.png",
+    projectName: "Netflix Clone",
+    link: "https://netflix-clone-woad-nine.vercel.app/",
+  },
+  {
+    id: 3,
+    imgUrl: "pro7.png",
+    projectName: "Revive Physiotherapy - Ghana",
+    link: "https://revive-physiotherapy.vercel.app/",
+  },
+  {
+    id: 4,
+    imgUrl: "store.png",
+    projectName: "Groceries Store",
+    link: "https://groceries-store-lovat.vercel.app/",
+  },
+  {
+    id: 5,
+    imgUrl: "quiz.png",
+    projectName: "Quiz App",
+    link: "https://quiz-app-gray-rho-26.vercel.app/",
+  },
+]

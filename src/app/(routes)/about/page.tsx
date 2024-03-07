@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 const About = () => {
   return (
-    <div className="relative grid w-full h-full px-3 mx-auto sm:px-5 lg:px-8 max-w-7xl">
+    <div className="grid h-full px-3 mx-auto sm:px-5 lg:px-8 max-w-7xl w-full bg-red-700">
       <AboutMe />
       <Testimonial />
     </div>

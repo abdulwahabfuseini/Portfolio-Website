@@ -40,7 +40,7 @@ const PricingCard = ({ title, amount, service }: PriceProps) => {
         placeholder={null}
         color="gray"
         variant="gradient"
-        className="w-full p-8 bg-main"
+        className="w-full p-8 bg-glass"
       >
         <CardHeader
           placeholder={null}

@@ -59,8 +59,8 @@ const ContactForm = () => {
       className="w-full h-full py-5"
     >
       <motion.div variants={slideInFromRight(0.8)}>
-        <h1 className="pb-4 text-2xl text-center sm:text-3xl sm">
-          Send a Message
+        <h1 className="pb-4 text-2xl text-center sm:text-3xl capitalize">
+          Write me your project
         </h1>
         <Form onFinish={handleSubmit} form={form}>
           <Form.Item
@@ -135,7 +135,7 @@ const ContactForm = () => {
             ]}
           >
             <TextArea
-              placeholder="Enter Message"
+              placeholder="Write Your Project"
               name="message"
               onChange={(e) =>
                 setContact({ ...contact, message: e.target.value })
@@ -149,7 +149,7 @@ const ContactForm = () => {
             type="primary"
             className="w-full h-12 my-4 text-xl cursor-pointer light-background"
           >
-            {loading ? "Sending..." : "Send Message"}
+            {loading ? "Sending..." : "Send Project"}
           </Button>
         </Form>
       </motion.div>

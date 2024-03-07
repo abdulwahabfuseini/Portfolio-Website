@@ -10,6 +10,7 @@ const ReviewForm = ({ openLeft }: any) => {
   const [userDetails, setUserDetails] = useState({
     fullName: "",
     email: "",
+    occupation: "",
     description: "",
   });
 
@@ -69,11 +70,30 @@ const ReviewForm = ({ openLeft }: any) => {
         >
           <Input
             name="email"
-            type="text"
-            placeholder="Enter FullName"
+            type="email"
+            placeholder="Enter Email"
             style={{ background: "white" }}
             onChange={(e) =>
               setUserDetails({ ...userDetails, email: e.target.value })
+            }
+            className="h-12 text-lg border-2 border-green-500"
+          />
+        </Form.Item>
+        <Form.Item
+          name="occupation"
+          rules={[
+            { required: true, message: "Occupation Field is Required" },
+          ]}
+          hasFeedback
+          className="text-lg"
+        >
+          <Input
+            name="occupation"
+            type="text"
+            placeholder="Enter Title/Position"
+            style={{ background: "white" }}
+            onChange={(e) =>
+              setUserDetails({ ...userDetails, occupation: e.target.value })
             }
             className="h-12 text-lg border-2 border-green-500"
           />

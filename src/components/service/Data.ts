@@ -51,24 +51,30 @@ export const serviceData = [
     desc: "I consider color schemes, typography, and layout to ensure that every element harmonizes with the project's identity Responsive and  user-friendly, my UI designs adapt seamlessly to various devices and screen sizes.",
     desc1:
       "I consider color schemes, typography, and layout to ensure that every element harmonizes with the project's identity. Responsive and user-friendly, my UI designs adapt seamlessly to various devices and screen sizes. This commitment to responsive design guarantees an engaging user experience, whether on a desktop, tablet, or smartphone.",
+    desc2:
+      "From creating engaging layouts to selecting the right color schemes and typography, I focus on every detail to ensure a seamless and visually pleasing interaction. The goal is to strike a balance between aesthetics and usability, creating interfaces that not only captivate users but also provide a smooth and enjoyable journey through the digital landscape.",
   },
   {
     id: "06",
     gif: "api.gif",
     icon: "responsive.png",
     title: "Node.Js API",
-    desc: "I consider color schemes, typography, and layout to ensure that every element harmonizes with the project's identity Responsive and  user-friendly, my UI designs adapt seamlessly to various devices and screen sizes.",
+    desc: "Leveraging the power of Node.js, I develop robust and scalable APIs that form the backbone of dynamic web applications. With Node.js, I create efficient and high-performance APIs that seamlessly handle concurrent requests.",
     desc1:
-      "I consider color schemes, typography, and layout to ensure that every element harmonizes with the project's identity. Responsive and user-friendly, my UI designs adapt seamlessly to various devices and screen sizes. This commitment to responsive design guarantees an engaging user experience, whether on a desktop, tablet, or smartphone.",
+      "Leveraging the power of Node.js, I develop robust and scalable APIs that form the backbone of dynamic web applications. With Node.js, I create efficient and high-performance APIs that seamlessly handle concurrent requests. By harnessing the asynchronous nature of Node.js, I optimize data flow and enhance real-time communication,",
+    desc2:
+      "Providing clients with a responsive and interactive web experience. Whether building RESTful APIs or incorporating WebSocket for real-time features, my expertise in Node.js ensures that the backend infrastructure is not just functional but also performs at its best, meeting the demands of modern web development.",
   },
   {
     id: "07",
     gif: "hosting.gif",
     icon: "hosting.png",
     title: "Web Hosting",
-    desc: "I consider color schemes, typography, and layout to ensure that every element harmonizes with the project's identity Responsive and  user-friendly, my UI designs adapt seamlessly to various devices and screen sizes.",
+    desc: "Delivering a holistic web development service, I extend my expertise to web hosting solutions. With a deep understanding of various hosting platforms and services, I guide clients in selecting the most suitable hosting",
+    desc2:
+      "Delivering a holistic web development service, I extend my expertise to web hosting solutions. With a deep understanding of various hosting platforms and services, I guide clients in selecting the most suitable hosting environment tailored to their project requirements. From shared hosting for smaller websites to scalable cloud solutions for larger applications, ",
     desc1:
-      "I consider color schemes, typography, and layout to ensure that every element harmonizes with the project's identity. Responsive and user-friendly, my UI designs adapt seamlessly to various devices and screen sizes. This commitment to responsive design guarantees an engaging user experience, whether on a desktop, tablet, or smartphone.",
+      "I ensure reliable, secure, and high-performance hosting. By addressing factors such as server configuration, security protocols, and uptime guarantees, I enable clients to have a robust online presence with a hosting solution that aligns seamlessly with their web development needs",
   },
 ];
 

@@ -23,7 +23,7 @@ const Hero = () => {
       >
         <motion.div variants={slideInFromLeft(1)}>
           <div>
-          <div className="flex items-center gap-3 pb-3">
+          <div className="flex items-center gap-3">
             <h1 className="text-4xl">Hello</h1>
             <Image
               src="/SVG/wave.png"
@@ -35,7 +35,7 @@ const Hero = () => {
               draggable="false"
             />
           </div>
-            <h3 className="text-2xl lg:text-3xl animateText">
+            <h3 className="text-4xl animateText my-3">
               <span> I'm Fuseini Abdul Wahab,</span>
             </h3>
             <h4 className="text-2xl font-bold lg:text-4xl">
