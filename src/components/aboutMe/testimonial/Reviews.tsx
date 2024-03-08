@@ -4,13 +4,14 @@ import { useRouter } from "next/navigation";
 import { Comment } from "@/utils/Types";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation } from "swiper/modules";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import "swiper/css/pagination";
 import "swiper/css";
 import "swiper/css/navigation";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { Rate, Typography } from "antd";
+import {  FaQuoteRight } from "react-icons/fa";
 import { reviews } from "@/assets/Data";
-import ReviewCard from "./ReviewCard";
 
 const Reviews = () => {
   const router = useRouter();
@@ -45,7 +46,7 @@ const Reviews = () => {
   }, [router]);
 
   return (
-    <div className="relative w-full">
+    <div>
       <div className="flex items-center justify-between pr-10">
         <header className="text-3xl capitalize">
           What my clients say about me
@@ -62,20 +63,20 @@ const Reviews = () => {
       <Swiper
         pagination={{ clickable: true }}
         navigation={{ nextEl, prevEl }}
-        modules={[Autoplay, Navigation]}
-        spaceBetween={18}
+        modules={[Autoplay, Navigation, Pagination]}
+        spaceBetween={10}
         loop={true}
         speed={3000}
-        autoplay={{ delay: 6000, disableOnInteraction: false }}
+        autoplay={{ delay: 9000, disableOnInteraction: false }}
         breakpoints={{
           0: {
-            slidesPerView: 1,
+            slidesPerView: 1.05,
           },
           400: {
-            slidesPerView: 1.2,
+            slidesPerView: 1.23,
           },
           600: {
-            slidesPerView: 1.4,
+            slidesPerView: 1.5,
           },
           768: {
             slidesPerView: 1.8,
@@ -84,45 +85,37 @@ const Reviews = () => {
             slidesPerView: 2.8,
           },
         }}
-        className="w-full mt-10 mb-14"
+        className="mt-10 mb-14"
       >
         <div>
-          {reviews.map((review) => {
+          {reviews.map((review, index) => {
+            const { fullName, email, occupation, description } = review;
             return (
-              <SwiperSlide key={review.id}>
-                <ReviewCard
-                  fullName={review.fullName}
-                  email={review.email}
-                  occupation={review.occupation}
-                  description={review.description}
-                />
+              <SwiperSlide key={index} className="bg-glass p-4 mb-10 shadow-lg">
+                <div className="relative grid ">
+                  <h1 className="text-xl font-bold">{fullName}</h1>
+                  <h1 className="Text">{email}</h1>
+                  <FaQuoteRight className="text-3xl top-2 right-3 absolute " />
+                  <Typography.Paragraph
+                    className="text-base text-white py-2"
+                    ellipsis={{
+                      rows: 3,
+                      expandable: true,
+                      symbol: "Read More",
+                    }}
+                  >
+                    {description}
+                  </Typography.Paragraph>
+                  <div className="flex items-center justify-between">
+                    <h1 className="text-lg font-semibold truncate capitalize">
+                      {occupation}
+                    </h1>
+                    <Rate defaultValue={5} allowHalf className="text-sm" />
+                  </div>
+                </div>
               </SwiperSlide>
             );
           })}
-          {/* {records.map((comment) => (
-                <SwiperSlide key={comment._id} className="mt-6">
-                  <div className="relative">
-                    <FaQuoteLeft className="absolute top-0 text-3xl text-gray-400 left-3" />
-                    <div className="z-20 grid gap-2 p-3 place-items-center">
-                      <Image
-                        width={80}
-                        height={80}
-                        src="/SVG/wave.png"
-                        alt="logo"
-                        className="object-contain rounded-full"
-                      />
-                      <h1 className="text-lg font-semibold text-green-600 capitalize">
-                        {comment?.fullName}
-                      </h1>
-                      <h1 className="text-lg font-semibold text-green-600 capitalize">
-                        {comment?.email}
-                      </h1>
-                      <p>{comment?.description}</p>
-                    </div>
-                    <FaQuoteRight className="absolute bottom-0 text-3xl text-gray-400 right-3" />
-                  </div>
-                </SwiperSlide>
-              ))} */}
         </div>
       </Swiper>
     </div>

@@ -5,7 +5,7 @@ import MobileNav from "./MobileNav";
 import Link from "next/link";
 import { navigate } from "@/assets/navigation";
 import { motion } from "framer-motion";
-import { slideInFromTop } from "@/utils/motion";
+import { fadeIn } from "@/utils/motion";
 
 const Navbar = () => {
   const [sticky, setSticky] = useState(false);
@@ -17,14 +17,14 @@ const Navbar = () => {
   });
 
   return (
-    <motion.div initial="hidden" animate="visible" className="w-full">
-      <motion.nav  variants={slideInFromTop(1)}
+    <div  className="w-full">
+      <motion.nav initial="hidden" whileInView={"show"}  variants={fadeIn("down", 1)}
         aria-label="navbar"
         className={`${
           sticky
-            ? "fixed top-0 h-16 shadow-lg shadow-indigo-500/20  z-50 bg-background w-full text-white bg-black md:px-[8vw]"
-            : "my-8 mx-3 sm:mx-16 max-w-4xl lg:mx-auto transition-all ease-in bg-glass rounded-xl"
-        } flex items-center justify-between px-3 sm:px-4 py-3 sm:py-3 shadow-xl`}
+            ? "fixed top-0 py-5 shadow-lg shadow-indigo-500/20  z-50 bg-background w-full text-white bg-black md:px-[8vw]"
+            : "my-8 mx-3 sm:mx-16 max-w-4xl lg:mx-auto transition-all ease-in bg-glass rounded-xl  py-3 sm:py-3"
+        } flex items-center justify-between px-3 sm:px-6 shadow-xl`}
       >
         <Link href="/">
           <p className="text-lg font-bold cursor-pointer sm:text-xl Text">
@@ -43,7 +43,7 @@ const Navbar = () => {
         </ul>
         <MobileNav />
       </motion.nav>
-    </motion.div>
+    </div>
   );
 };
 

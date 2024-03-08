@@ -2,12 +2,12 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { slideInFromBottom } from "@/utils/motion";
+import { fadeIn } from "@/utils/motion";
 
 const Footer = () => {
   return (
-    <motion.div initial="hidden" animate="visible">
-      <motion.div  variants={slideInFromBottom(3)} className="w-full px-4 py-6 border-t-2 bg-main">
+    <div>
+      <motion.div  initial="hidden" whileInView={"show"}  variants={fadeIn("bottom", 0.8)} className="w-full px-4 py-6 border-t-2 bg-glass">
         <div className="flex flex-wrap justify-between mx-auto sm:px-2 sm:items-center max-w-7xl gap-y-4">
           <p className="gap-3 text-xl leading-10 sm:flex">
             &copy; 2023 All Right Reserved <br className="sm:hidden" />{" "}
@@ -40,7 +40,7 @@ const Footer = () => {
           </div>
         </div>
       </motion.div>
-    </motion.div>
+    </div>
   );
 };
 

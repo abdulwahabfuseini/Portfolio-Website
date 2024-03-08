@@ -4,17 +4,18 @@ import React from "react";
 import Image from "next/image";
 import Social from "../home/Social";
 import { motion } from "framer-motion";
-import { slideInFromLeft } from "@/utils/motion";
+import { fadeIn } from "@/utils/motion";
 import { ContactInfo } from "@/assets/Data";
 
 const Address = () => {
   return (
-    <motion.div
-      initial="hidden"
-      animate="visible"
-      className="w-full py-3 shadow-xl md:py-6"
-    >
-      <motion.div variants={slideInFromLeft(0.6)} className="">
+    <div className="w-full py-3 shadow-xl md:py-6">
+      <motion.div
+        initial="hidden"
+        whileInView={"show"}
+        variants={fadeIn("left", 0.4)}
+        className=""
+      >
         <h4 className="mb-4 text-xl">CONTACT INFORMATION</h4>
         <div className="flex flex-wrap w-full gap-x-9">
           {ContactInfo.map((info) => (
@@ -51,7 +52,7 @@ const Address = () => {
         </div>
       </motion.div>
       <Social />
-    </motion.div>
+    </div>
   );
 };
 

@@ -2,13 +2,13 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { slideInFromLeft } from "@/utils/motion";
+import { fadeIn } from "@/utils/motion";
 import { HeadProps } from "@/utils/Types";
 
 const HeadTitle = ({ title, text }: HeadProps) => {
   return (
-    <motion.div initial="hidden" animate="visible" className="relative pb-6">
-      <motion.div variants={slideInFromLeft(1.5)}>
+    <div  className="relative pb-6">
+      <motion.div initial="hidden" whileInView={"show"}  variants={fadeIn("left", 0.6)}>
       <div  className="flex items-center gap-1 sm:gap-2">
         <Image src="/SVG/bullet.png" alt="" width={30} height={10} />
         <h2 className="text-2xl font-semibold uppercase lg:text-3xl animate__rubberBand">
@@ -19,7 +19,7 @@ const HeadTitle = ({ title, text }: HeadProps) => {
         <span>{text}</span>
       </h3>
       </motion.div>
-    </motion.div>
+    </div>
   );
 };
 

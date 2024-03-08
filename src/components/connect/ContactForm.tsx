@@ -5,7 +5,7 @@ import emailjs from "@emailjs/browser";
 import { Button, Form, Input } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { motion } from "framer-motion";
-import { slideInFromRight } from "@/utils/motion";
+import { fadeIn } from "@/utils/motion";
 
 const ContactForm = () => {
   const [form] = Form.useForm();
@@ -53,12 +53,12 @@ const ContactForm = () => {
   };
 
   return (
-    <motion.div
-      initial="hidden"
-      animate="visible"
-      className="w-full h-full py-5"
-    >
-      <motion.div variants={slideInFromRight(0.8)}>
+    <div className="w-full h-full py-5">
+      <motion.div
+        initial="hidden"
+        whileInView={"show"}
+        variants={fadeIn("up", 0.4)}
+      >
         <h1 className="pb-4 text-2xl text-center sm:text-3xl capitalize">
           Write me your project
         </h1>
@@ -153,7 +153,7 @@ const ContactForm = () => {
           </Button>
         </Form>
       </motion.div>
-    </motion.div>
+    </div>
   );
 };
 

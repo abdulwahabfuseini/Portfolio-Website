@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { slideInFromLeft } from "@/utils/motion";
+import { fadeIn } from "@/utils/motion";
 import HeadTitle from "@/components/HeadTitle";
 import Card from "./Card";
 import { ProjectData } from "@/components/project/Data";
@@ -14,13 +14,12 @@ const HomeProjects = () => {
   return (
     <div className="py-20">
       <HeadTitle title="Latest Projects" text=" Portfolio" />
-      <motion.div
-        initial="hidden"
-        animate="visible"
+      <div
+        
         className="grid w-full gap-3 py-8 sm:grid-auto-fit-xl"
       >
         {ProjectData.map((item) => (
-          <motion.div variants={slideInFromLeft(1)} key={item.id}>
+          <motion.div initial="hidden" whileInView={"show"}  variants={fadeIn("up", 0.4)} key={item.id}>
             <Card
               id={item.id}
               projectName={item.projectName}
@@ -35,7 +34,7 @@ const HomeProjects = () => {
             <FaArrowRightLong className="w-16 h-10 p-2 rounded-full group-hover:scale-x-125 group-hover:transition-all" />
           </span>
         </button>
-      </motion.div>
+      </div>
     </div>
   );
 };

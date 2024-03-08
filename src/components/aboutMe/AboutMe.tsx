@@ -8,7 +8,7 @@ import Education from "./education/Education";
 import Experience from "./experience/Experience";
 import HeadTitle from "../HeadTitle";
 import { motion } from "framer-motion";
-import { slideInFromLeft, slideInFromBottom } from "@/utils/motion";
+import { fadeIn } from "@/utils/motion";
 
 const AboutMe = () => {
   const [filter, setFilter] = useState("Skills");
@@ -35,9 +35,9 @@ const AboutMe = () => {
   }, [filter]);
 
   return (
-    <div className="pt-16 md:pt-28 pb-32">
+    <div className="pt-16 md:pt-28 pb-10">
       <HeadTitle title="Biography" text="About Me" />
-      <div className="grid max-w-xl grid-cols-2 gap-3 px-6 mx-auto sm:grid-cols-4 sm:bg-glass place-content-center sm:p-1">
+      <motion.div initial="hidden" whileInView={"show"}  variants={fadeIn("up", 0.3)}  className="grid max-w-xl grid-cols-2 gap-3 px-6 mx-auto sm:grid-cols-4 sm:bg-glass place-content-center sm:p-1">
         <button
           onClick={() => setFilter("Background")}
           className={
@@ -78,15 +78,14 @@ const AboutMe = () => {
         >
           Experience
         </button>
-      </div>
-      <motion.div
-        initial="hidden"
-        animate="visible"
+      </motion.div>
+      <div
+       
         className="flex flex-col-reverse items-center py-3 sm:py-0 sm:grid sm:grid-cols-3 sm:gap-x-8 lg:gap-x-14 "
       >
         <div className="col-span-1">
           {filter === "Background" && (
-            <motion.div variants={slideInFromLeft(1)}>
+            <motion.div initial="hidden" whileInView={"show"}  variants={fadeIn("left", 0.3)}>
               {loading ? (
                 "Loading.."
               ) : (
@@ -103,7 +102,7 @@ const AboutMe = () => {
             </motion.div>
           )}
           {filter === "Skills" && (
-            <motion.div variants={slideInFromLeft(1)}>
+            <motion.div initial="hidden" whileInView={"show"}  variants={fadeIn("left", 0.3)}>
               {loading ? (
                 "Loading.."
               ) : (
@@ -120,15 +119,15 @@ const AboutMe = () => {
             </motion.div>
           )}
           {filter === "Education" && (
-            <motion.div variants={slideInFromLeft(1)}>
+            <motion.div initial="hidden" whileInView={"show"}  variants={fadeIn("left", 0.3)}>
               {loading ? (
                 "Loading.."
               ) : (
                 <Image
-                  src="/SVG/education.png"
+                  src="/SVG/graduation.png"
                   alt=""
-                  width={600}
-                  height={600}
+                  width={800}
+                  height={800}
                   quality={100}
                   className="object-contain"
                   draggable="false"
@@ -137,7 +136,7 @@ const AboutMe = () => {
             </motion.div>
           )}
           {filter === "Experience" && (
-            <motion.div variants={slideInFromLeft(1)}>
+            <motion.div initial="hidden" whileInView={"show"}  variants={fadeIn("left", 0.3)}>
               {loading ? (
                 "Loading.."
               ) : (
@@ -158,10 +157,10 @@ const AboutMe = () => {
           {loading ? (
             <h1 className="h-screen text-xl">Please Wait ...</h1>
           ) : (
-            <motion.div variants={slideInFromBottom(1)}>{content}</motion.div>
+            <motion.div initial="hidden" whileInView={"show"}  variants={fadeIn("up", 0.4)}>{content}</motion.div>
           )}
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 };

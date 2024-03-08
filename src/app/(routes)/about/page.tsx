@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 const About = () => {
   return (
-    <div className="grid h-full px-3 mx-auto sm:px-5 lg:px-8 max-w-7xl w-full bg-red-700">
+    <div className="h-full px-3 mx-auto sm:px-5 lg:px-8 max-w-7xl overflow-x-hidden">
       <AboutMe />
       <Testimonial />
     </div>

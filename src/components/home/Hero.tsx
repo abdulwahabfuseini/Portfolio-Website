@@ -7,34 +7,30 @@ import { Typewriter } from "react-simple-typewriter";
 import Button from "../Button";
 import Social from "./Social";
 import { motion } from "framer-motion";
-import {
-  slideInFromLeft,
-  slideInFromRight,
-  slideInFromBottom,
-} from "@/utils/motion";
+import { fadeIn } from "@/utils/motion";
 
 const Hero = () => {
   return (
     <div>
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        className="grid sm:grid-cols-2 gap-y-8 sm:place-content-center place-items-center"
-      >
-        <motion.div variants={slideInFromLeft(1)}>
+      <div className="grid sm:grid-cols-2 gap-y-8 sm:place-content-center place-items-center">
+        <motion.div
+          initial="hidden"
+          whileInView={"show"}
+          variants={fadeIn("left", 0.4)}
+        >
           <div>
-          <div className="flex items-center gap-3">
-            <h1 className="text-4xl">Hello</h1>
-            <Image
-              src="/SVG/wave.png"
-              alt="hand"
-              width={50}
-              quality={100}
-              objectFit="contain"
-              height={20}
-              draggable="false"
-            />
-          </div>
+            <div className="flex items-center gap-3">
+              <h1 className="text-4xl">Hello</h1>
+              <Image
+                src="/SVG/wave.png"
+                alt="hand"
+                width={50}
+                quality={100}
+                objectFit="contain"
+                height={20}
+                draggable="false"
+              />
+            </div>
             <h3 className="text-4xl animateText my-3">
               <span> I'm Fuseini Abdul Wahab,</span>
             </h3>
@@ -59,7 +55,7 @@ const Hero = () => {
             <Button url="/about" text="About Me" />
           </div>
         </motion.div>
-        <motion.div variants={slideInFromRight(0.8)}>
+        <motion.div initial="hidden" whileInView={"show"}  variants={fadeIn("right", 0.5)}>
           <Image
             src="/images/front2.gif"
             alt=""
@@ -70,8 +66,8 @@ const Hero = () => {
             className="z-20 bounce"
           />
         </motion.div>
-      </motion.div>
-      <motion.div variants={slideInFromBottom(1.6)}>
+      </div>
+      <motion.div initial="hidden" whileInView={"show"}  variants={fadeIn("up", 0.6)}>
         <Social />
       </motion.div>
     </div>

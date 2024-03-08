@@ -5,7 +5,7 @@ import { PortFolio } from "./Data";
 import ProjectCard from "./ProjectCard";
 import HeadTitle from "../HeadTitle";
 import { motion } from "framer-motion";
-import { slideInFromBottom } from "@/utils/motion";
+import { fadeIn } from "@/utils/motion";
 
 const Project = () => {
   const [toggleTab, setToggleTab] = useState(1);
@@ -25,12 +25,13 @@ const Project = () => {
   return (
     <div className="w-full h-full px-4 py-10 mx-auto max-w-7xl">
       <HeadTitle title="latest Projects" text="Portfolio" />
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        className="grid max-w-6xl mx-auto place-items-center"
-      >
-        <div className="grid grid-cols-2 gap-3 p-1 sm:grid-cols-4 sm:bg-glass">
+      <div className="grid max-w-6xl mx-auto place-items-center">
+        <motion.div
+          initial="hidden"
+          whileInView={"show"}
+          variants={fadeIn("right", 0.3)}
+          className="grid grid-cols-2 gap-3 p-1 sm:grid-cols-4 sm:bg-glass"
+        >
           <button
             onClick={() => toggleButton(1)}
             className={
@@ -71,88 +72,112 @@ const Project = () => {
           >
             Clone-Website
           </button>
-        </div>
+        </motion.div>
         <div className="w-full">
           {loading ? (
             <h1 className="h-screen py-10 text-xl">Please Wait ...</h1>
           ) : (
             <div>
-              <motion.div variants={slideInFromBottom(0.6)} className="w-full">
+              <div className="w-full">
                 {toggleTab === 1 && (
                   <div className="grid w-full gap-3 py-10 grid-auto-fit-lg">
                     {PortFolio.map((project) => (
-                      <ProjectCard
+                      <motion.div
+                        initial="hidden"
+                        whileInView={"show"}
+                        variants={fadeIn("up", 0.4)}
                         key={project.id}
-                        link={project.link}
-                        code={project.code}
-                        imgUrl={project.imgUrl}
-                        connect={project.connect}
-                        projectName={project.projectName}
-                        tools={project.tools}
-                        desc={project.desc}
-                      />
+                      >
+                        <ProjectCard
+                          link={project.link}
+                          code={project.code}
+                          imgUrl={project.imgUrl}
+                          connect={project.connect}
+                          projectName={project.projectName}
+                          tools={project.tools}
+                          desc={project.desc}
+                        />
+                      </motion.div>
                     ))}
                   </div>
                 )}
-              </motion.div>
-              <motion.div variants={slideInFromBottom(0.6)} className="w-full">
+              </div>
+              <div className="w-full">
                 {toggleTab === 2 && (
                   <div className="grid w-full gap-4 py-10 sm:grid-cols-2 lg:grid-cols-3">
                     {PortFolio.slice(2, 5).map((project) => (
-                      <ProjectCard
+                      <motion.div
+                        initial="hidden"
+                        whileInView={"show"}
+                        variants={fadeIn("up", 0.4)}
                         key={project.id}
-                        link={project.link}
-                        code={project.code}
-                        imgUrl={project.imgUrl}
-                        connect={project.connect}
-                        projectName={project.projectName}
-                        tools={project.tools}
-                        desc={project.desc}
-                      />
+                      >
+                        <ProjectCard
+                          link={project.link}
+                          code={project.code}
+                          imgUrl={project.imgUrl}
+                          connect={project.connect}
+                          projectName={project.projectName}
+                          tools={project.tools}
+                          desc={project.desc}
+                        />
+                      </motion.div>
                     ))}
                   </div>
                 )}
-              </motion.div>
-              <motion.div variants={slideInFromBottom(0.6)} className="w-full">
+              </div>
+              <div className="w-full">
                 {toggleTab === 3 && (
                   <div className="grid w-full gap-4 py-10 sm:grid-cols-2 lg:grid-cols-3">
                     {PortFolio.slice(5, 8).map((project) => (
-                      <ProjectCard
+                      <motion.div
+                        initial="hidden"
+                        whileInView={"show"}
+                        variants={fadeIn("up", 0.4)}
                         key={project.id}
-                        link={project.link}
-                        code={project.code}
-                        imgUrl={project.imgUrl}
-                        connect={project.connect}
-                        projectName={project.projectName}
-                        tools={project.tools}
-                        desc={project.desc}
-                      />
+                      >
+                        <ProjectCard
+                          link={project.link}
+                          code={project.code}
+                          imgUrl={project.imgUrl}
+                          connect={project.connect}
+                          projectName={project.projectName}
+                          tools={project.tools}
+                          desc={project.desc}
+                        />
+                      </motion.div>
                     ))}
                   </div>
                 )}
-              </motion.div>
-              <motion.div variants={slideInFromBottom(0.6)} className="w-full">
+              </div>
+              <div className="w-full">
                 {toggleTab === 4 && (
                   <div className="grid w-full gap-4 py-10 sm:grid-cols-2 lg:grid-cols-3 ">
                     {PortFolio.slice(0, 2).map((project) => (
-                      <ProjectCard
+                      <motion.div
+                        initial="hidden"
+                        whileInView={"show"}
+                        variants={fadeIn("up", 0.4)}
                         key={project.id}
-                        link={project.link}
-                        code={project.code}
-                        imgUrl={project.imgUrl}
-                        connect={project.connect}
-                        projectName={project.projectName}
-                        tools={project.tools}
-                        desc={project.desc}
-                      />
+                      >
+                        <ProjectCard
+                          link={project.link}
+                          code={project.code}
+                          imgUrl={project.imgUrl}
+                          connect={project.connect}
+                          projectName={project.projectName}
+                          tools={project.tools}
+                          desc={project.desc}
+                        />
+                      </motion.div>
                     ))}
                   </div>
                 )}
-              </motion.div>
+              </div>
             </div>
           )}
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 };

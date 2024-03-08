@@ -37,7 +37,7 @@ const ReviewForm = ({ openLeft }: any) => {
   };
 
   return (
-    <div className="text-white">
+    <div className="text-white relative  py-14">
       <h1 className="py-6 text-xl font-bold text-center">
         Say Something About Me
       </h1>

@@ -38,18 +38,18 @@ const ProjectCard = ({ link, code, imgUrl, connect, projectName, desc, tools }: 
               className="grid gap-1 text-center cursor-pointer place-items-center"
             >
               <Image
-                width={40}
-                height={40}
+                width={50}
+                height={50}
                 src={`/images/${connect}`}
                 alt="link"
                 draggable="false"
               />
-              <h1>{projectName}</h1>
+              <h1 className="text-lg">{projectName}</h1>
               <span> {link}</span>
             </a>
           </div>
         </div>
-        <h1 className="py-2 text-xl text-center">{projectName}</h1>
+        <h1 className="py-2 text-xl text-center Text">{projectName}</h1>
         <p className="text-center">
           {desc}{" "}
           <span className="flex flex-wrap items-center justify-center gap-2 pt-2">

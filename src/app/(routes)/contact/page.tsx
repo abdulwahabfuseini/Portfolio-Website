@@ -17,7 +17,7 @@ const Contact = () => {
     <div className="grid w-full h-full px-4 py-8 mx-auto md:py-14 max-w-7xl sm:px-5">
       <div className="flex justify-between items-center gap-y-8 gap-x-3 flex-col sm:flex-row">
         <div>
-          <HeadTitle title="Contact Me" text="Contact" />
+          <HeadTitle title="Contact Me" text="Connect" />
           <Need />
           <p className="pt-4 text-lg capitalize">
             Connect with me Let's build a professional{" "}

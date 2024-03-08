@@ -2,7 +2,7 @@ export const serviceData = [
   {
     id: "01",
     gif: "web.gif",
-    icon: "webD.png",
+    icon: "dev.png",
     title: "Web Development",
     desc: "On my portfolio, I showcase my expertise in web development, emphasizing key skills and technologies. I highlight impactful projects, detailing my role project descriptions, challenges, and achievements.",
     desc1:
@@ -13,7 +13,7 @@ export const serviceData = [
   {
     id: "02",
     gif: "app.gif",
-    icon: "dev.png",
+    icon: "website.png",
     title: "Web Application",
     desc: "I've designed web applications with user experience at the forefront, ensuring seamless navigation and intuitive interactions. Behind the scenes, robust backend systems handle data storage, security,",
     desc1:
@@ -24,7 +24,7 @@ export const serviceData = [
   {
     id: "03",
     gif: "respo.gif",
-    icon: "devices.png",
+    icon: "responsiveD.png",
     title: "Responsive Design",
     desc: "I make ensure my web application looks great and works well on various devices and screen sizes.  Some Key elements of  responsive design include adaptive layouts, fluid grids, flexible images, ",
     desc1:
@@ -46,7 +46,7 @@ export const serviceData = [
   {
     id: "05",
     gif: "apps.gif",
-    icon: "uidesign.png",
+    icon: "ui.png",
     title: "User Interface (UI) Design",
     desc: "I consider color schemes, typography, and layout to ensure that every element harmonizes with the project's identity Responsive and  user-friendly, my UI designs adapt seamlessly to various devices and screen sizes.",
     desc1:
@@ -57,7 +57,7 @@ export const serviceData = [
   {
     id: "06",
     gif: "api.gif",
-    icon: "responsive.png",
+    icon: "api.png",
     title: "Node.Js API",
     desc: "Leveraging the power of Node.js, I develop robust and scalable APIs that form the backbone of dynamic web applications. With Node.js, I create efficient and high-performance APIs that seamlessly handle concurrent requests.",
     desc1:
@@ -68,7 +68,7 @@ export const serviceData = [
   {
     id: "07",
     gif: "hosting.gif",
-    icon: "hosting.png",
+    icon: "webhosting.png",
     title: "Web Hosting",
     desc: "Delivering a holistic web development service, I extend my expertise to web hosting solutions. With a deep understanding of various hosting platforms and services, I guide clients in selecting the most suitable hosting",
     desc2:
@@ -146,3 +146,43 @@ export const ProjectPlan = [
     ],
   },
 ];
+
+
+export const ChooseData = [
+  {
+    id: 1,
+    title: "Adaptability & Continuous Learning:",
+    icon: "adaptation.png",
+    desc: "As a frontend web developer, I stay abreast of the latest trends, frameworks, and tools. This dedication allows me to adapt quickly to industry shifts, ensuring that the solutions I provide are built on cutting-edge technologies.",
+  },
+  {
+    id: 2,
+    title: "Responsive Design Mastery:",
+    icon: "responsive.png",
+    desc: "As a frontend web developer, I specialize in creating websites that adapt flawlessly to various screen sizes and resolutions. My expertise ensures that the user experience remains optimal, whether on a desktop, tablet, or smartphone."
+  },
+  {
+    id: 3,
+    title: "Problem-Solving Skills:",
+    icon: "problem.png",
+    desc: "As a frontend web developer, I thrive on dissecting complex challenges and finding elegant solutions. Whether it's overcoming compatibility issues, optimizing performance, or resolving user experience, I approach each problem with a strategic mindset."
+  },
+  {
+    id: 4,
+    title: "Proven Expertise:",
+    icon: "service.png",
+    desc: "With a proven track record, I bring a wealth of expertise as a frontend web developer. My portfolio showcases a diverse range of successful projects, highlighting my commitment to delivering visually appealing and highly functional digital experiences."
+  },
+  {
+    id: 5,
+    title: "Collaborative Team Player:",
+    icon: "collaboration.png",
+    desc: "As a Collaborative Team Player, I thrive in working closely with diverse teams to achieve common goals. I actively engage in open communication, share ideas, and leverage collective expertise to find innovative solutions."
+  },
+  {
+    id: 6,
+    title: "Attention to Detail:",
+    icon: "fist.png",
+    desc: "With meticulous attention to detail, I ensure that every aspect of a project is crafted with precision and accuracy. From pixel-perfect designs to flawless code implementation, I take pride in delivering high-quality work that meets and exceeds client expectations."
+  },
+]
