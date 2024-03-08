@@ -4,14 +4,13 @@ import { useRouter } from "next/navigation";
 import { Comment } from "@/utils/Types";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { Autoplay, Navigation } from "swiper/modules";
 import "swiper/css/pagination";
 import "swiper/css";
 import "swiper/css/navigation";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { Rate, Typography } from "antd";
-import {  FaQuoteRight } from "react-icons/fa";
-import { reviews } from "@/assets/Data";
+import { FaQuoteRight } from "react-icons/fa";
 
 const Reviews = () => {
   const router = useRouter();
@@ -29,7 +28,7 @@ const Reviews = () => {
       });
 
       if (res.ok) {
-        router.refresh();
+        router.refresh()
       }
 
       const client = await res.json();
@@ -40,7 +39,7 @@ const Reviews = () => {
 
       setTimeout(() => {
         setLoading(false);
-      }, 80);
+      }, 100);
     };
     getComment();
   }, [router]);
@@ -60,64 +59,69 @@ const Reviews = () => {
           </button>
         </div>
       </div>
-      <Swiper
-        pagination={{ clickable: true }}
-        navigation={{ nextEl, prevEl }}
-        modules={[Autoplay, Navigation, Pagination]}
-        spaceBetween={10}
-        loop={true}
-        speed={3000}
-        autoplay={{ delay: 9000, disableOnInteraction: false }}
-        breakpoints={{
-          0: {
-            slidesPerView: 1.05,
-          },
-          400: {
-            slidesPerView: 1.23,
-          },
-          600: {
-            slidesPerView: 1.5,
-          },
-          768: {
-            slidesPerView: 1.8,
-          },
-          1024: {
-            slidesPerView: 2.8,
-          },
-        }}
-        className="mt-10 mb-14"
-      >
-        <div>
-          {reviews.map((review, index) => {
-            const { fullName, email, occupation, description } = review;
-            return (
-              <SwiperSlide key={index} className="bg-glass p-4 mb-10 shadow-lg">
-                <div className="relative grid ">
-                  <h1 className="text-xl font-bold">{fullName}</h1>
-                  <h1 className="Text">{email}</h1>
-                  <FaQuoteRight className="text-3xl top-2 right-3 absolute " />
-                  <Typography.Paragraph
-                    className="text-base text-white py-2"
-                    ellipsis={{
-                      rows: 3,
-                      expandable: true,
-                      symbol: "Read More",
-                    }}
-                  >
-                    {description}
-                  </Typography.Paragraph>
-                  <div className="flex items-center justify-between">
-                    <h1 className="text-lg font-semibold truncate capitalize">
-                      {occupation}
-                    </h1>
-                    <Rate defaultValue={5} allowHalf className="text-sm" />
-                  </div>
-                </div>
-              </SwiperSlide>
-            );
-          })}
-        </div>
-      </Swiper>
+      <div>
+        {loading ? (
+          <h1 className="text-xl mb-24">Please Wait ...</h1>
+        ) : (
+          <Swiper
+            navigation={{ nextEl, prevEl }}
+            modules={[Autoplay, Navigation]}
+            spaceBetween={10}
+            loop={true}
+            speed={3000}
+            autoplay={{ delay: 9000, disableOnInteraction: false }}
+            breakpoints={{
+              0: {
+                slidesPerView: 1.05,
+              },
+              400: {
+                slidesPerView: 1.23,
+              },
+              600: {
+                slidesPerView: 1.5,
+              },
+              768: {
+                slidesPerView: 1.8,
+              },
+              1024: {
+                slidesPerView: 2.8,
+              },
+            }}
+            className="mt-10 mb-14"
+          >
+            <div>
+              {records.map((review, index) => {
+                const { fullName, email, occupation, description } = review;
+                return (
+                  <SwiperSlide key={index} className="bg-glass p-4 shadow-lg">
+                    <div className="relative grid ">
+                      <h1 className="text-xl font-bold">{fullName}</h1>
+                      <h1 className="Text">{email}</h1>
+                      <FaQuoteRight className="text-3xl top-2 right-3 absolute " />
+                      <Typography.Paragraph
+                        className="text-base text-white py-2"
+                        ellipsis={{
+                          rows: 3,
+                          expandable: true,
+                          symbol: "Read More",
+                        }}
+                      >
+                        {description}
+                      </Typography.Paragraph>
+                      <div className="flex items-center justify-between">
+                        <h1 className="text-lg font-semibold  capitalize">
+                          {occupation}
+                        </h1>
+                        <Rate defaultValue={5} allowHalf className="text-sm" />
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                );
+              })}
+            </div>
+          </Swiper>
+        )}
+      </div>
     </div>
   );
 };

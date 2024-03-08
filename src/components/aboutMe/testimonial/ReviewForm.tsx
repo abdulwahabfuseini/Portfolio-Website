@@ -4,7 +4,7 @@ import { Button, Form, Input } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { useState } from "react";
 
-const ReviewForm = ({ openLeft }: any) => {
+const ReviewForm = () => {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [userDetails, setUserDetails] = useState({
@@ -26,7 +26,7 @@ const ReviewForm = ({ openLeft }: any) => {
         body: JSON.stringify(userDetails),
       });
       if (res.ok) {
-        form.resetFields(openLeft);
+        form.resetFields();
         alert("Thank you for adding a testimonial");
       }
     } catch (error) {
@@ -37,7 +37,7 @@ const ReviewForm = ({ openLeft }: any) => {
   };
 
   return (
-    <div className="text-white relative  py-14">
+    <div className=" relative  py-14">
       <h1 className="py-6 text-xl font-bold text-center">
         Say Something About Me
       </h1>
@@ -56,7 +56,7 @@ const ReviewForm = ({ openLeft }: any) => {
             onChange={(e) =>
               setUserDetails({ ...userDetails, fullName: e.target.value })
             }
-            className="h-12 text-lg text-white border-2 border-green-500"
+            className="h-12 text-lg border-2 border-green-500"
           />
         </Form.Item>
         <Form.Item
@@ -81,9 +81,7 @@ const ReviewForm = ({ openLeft }: any) => {
         </Form.Item>
         <Form.Item
           name="occupation"
-          rules={[
-            { required: true, message: "Occupation Field is Required" },
-          ]}
+          rules={[{ required: true, message: "Occupation Field is Required" }]}
           hasFeedback
           className="text-lg"
         >
@@ -121,7 +119,7 @@ const ReviewForm = ({ openLeft }: any) => {
           className="h-12 text-lg font-semibold light-background"
         >
           {loading ? (
-            <span className="bg-white text-black">Submitting...</span>
+            <span className="text-white">Submitting...</span>
           ) : (
             "Submit Review"
           )}
