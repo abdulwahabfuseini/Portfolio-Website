@@ -28,7 +28,7 @@ const Reviews = () => {
       });
 
       if (res.ok) {
-        router.refresh()
+        router.refresh();
       }
 
       const client = await res.json();
@@ -61,7 +61,7 @@ const Reviews = () => {
       </div>
       <div>
         {loading ? (
-          <h1 className="text-xl mb-24">Please Wait ...</h1>
+          <h1 className="text-xl mt-4 mb-24">Please Wait ...</h1>
         ) : (
           <Swiper
             navigation={{ nextEl, prevEl }}

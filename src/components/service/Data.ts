@@ -35,7 +35,7 @@ export const serviceData = [
   {
     id: "04",
     gif: "animation.gif",
-    icon: "web.png",
+    icon: "animation.png",
     title: "Animation  and Interactive",
     desc: " As a frontend developer, I harness animations to create captivating, informative, and delightful online journeys. Explore my portfolio to witness the power of web animations in action,",
     desc1:
@@ -170,7 +170,7 @@ export const ChooseData = [
   {
     id: 4,
     title: "Proven Expertise:",
-    icon: "service.png",
+    icon: "expertise.png",
     desc: "With a proven track record, I bring a wealth of expertise as a frontend web developer. My portfolio showcases a diverse range of successful projects, highlighting my commitment to delivering visually appealing and highly functional digital experiences."
   },
   {
@@ -182,7 +182,7 @@ export const ChooseData = [
   {
     id: 6,
     title: "Attention to Detail:",
-    icon: "fist.png",
+    icon: "mindset.png",
     desc: "With meticulous attention to detail, I ensure that every aspect of a project is crafted with precision and accuracy. From pixel-perfect designs to flawless code implementation, I take pride in delivering high-quality work that meets and exceeds client expectations."
   },
 ]

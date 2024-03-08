@@ -124,10 +124,10 @@ const AboutMe = () => {
                 "Loading.."
               ) : (
                 <Image
-                  src="/SVG/graduation.png"
+                  src="/SVG/student.png"
                   alt=""
-                  width={800}
-                  height={800}
+                  width={300}
+                  height={600}
                   quality={100}
                   className="object-contain"
                   draggable="false"

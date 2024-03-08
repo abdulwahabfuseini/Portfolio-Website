@@ -22,7 +22,7 @@ export const POST = async (req: NextRequest) => {
     await review.save();
 
     return NextResponse.json(
-      { message: "Thanks for your cmoment", data: review },
+      { message: "Thanks for your comment", data: review },
       {
         status: 201,
         headers: {

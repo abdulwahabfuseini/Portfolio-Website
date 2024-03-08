@@ -1,10 +1,6 @@
 import { FadeIn } from "./Types";
 
-
-export const fadeIn = (
-  direction: string,
-  delay: number
-): FadeIn => {
+export const fadeIn = (direction: string, delay: number): FadeIn => {
   return {
     hidden: {
       x: direction === "right" ? 50 : direction === "left" ? -50 : 0,

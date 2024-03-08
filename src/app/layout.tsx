@@ -21,7 +21,7 @@ export default function RootLayout({
       <Head>
         <meta name="viewport" content="width=device-width, user-scalable=no" />
       </Head>
-      <body className="relative w-full h-full text-white bg-black">
+      <body className="relative w-full h-full text-white bg-black overflow-x-hidden">
         <div className="z-20">
           <StarsCanvas />
         </div>
