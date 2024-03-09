@@ -50,8 +50,8 @@ export const PortFolio = [
     id: 4,
     imgUrl: "pro7.png",
     projectName: "Revive Physiotherapy - Ghana",
-    code: "https://github.com/abdulwahabfuseini/Revive-Physiotherapy",
-    link: "https://revive-physiotherapy.vercel.app/",
+    code: "https://github.com/abdulwahabfuseini/Revive-Physiotherapy-Ghana",
+    link: "https://revive-physiotherapy-ghana.vercel.app/",
     connect: "link.png",
     desc: "A Physiotherapist Website made with",
     tools: [
@@ -149,7 +149,7 @@ export const ProjectData = [
     id: 3,
     imgUrl: "pro7.png",
     projectName: "Revive Physiotherapy - Ghana",
-    link: "https://revive-physiotherapy.vercel.app/",
+    link: "https://revive-physiotherapy-ghana.vercel.app/",
   },
   {
     id: 4,

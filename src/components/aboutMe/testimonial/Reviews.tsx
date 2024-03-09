@@ -97,7 +97,7 @@ const Reviews = () => {
                     <div className="relative grid ">
                       <h1 className="text-xl font-bold">{fullName}</h1>
                       <h1 className="Text">{email}</h1>
-                      <FaQuoteRight className="text-3xl top-2 right-3 absolute " />
+                      <FaQuoteRight className="text-3xl -top-1.5 right-3 absolute " />
                       <Typography.Paragraph
                         className="text-base text-white py-2"
                         ellipsis={{

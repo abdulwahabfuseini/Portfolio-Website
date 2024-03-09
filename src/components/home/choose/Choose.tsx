@@ -14,7 +14,7 @@ const Choose = () => {
       <motion.h1
         initial="hidden"
         whileInView={"show"}
-        variants={fadeIn("up", 0.5)}
+        variants={fadeIn("down", 0.5)}
         className="text-lg"
       >
         Why you should choose me as a frontend web developer:
