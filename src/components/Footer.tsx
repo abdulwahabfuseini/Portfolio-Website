@@ -10,7 +10,7 @@ const Footer = () => {
       <motion.div  initial="hidden" whileInView={"show"}  variants={fadeIn("bottom", 0.8)} className="w-full px-4 py-6 border-t-2 bg-glass">
         <div className="flex flex-wrap justify-between mx-auto sm:px-2 sm:items-center max-w-7xl gap-y-4">
           <p className="gap-3 text-xl leading-10 sm:flex">
-            &copy; 2023 All Right Reserved <br className="sm:hidden" />{" "}
+            &copy; 2024 All Right Reserved <br className="sm:hidden" />{" "}
             <span className="hidden sm:block">|</span> FUSEINI ABDUL WAHAB
           </p>
           <div className="flex flex-col gap-4 text-lg sm:text-xl sm:flex-row">
