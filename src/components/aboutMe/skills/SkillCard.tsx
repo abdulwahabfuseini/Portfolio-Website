@@ -31,7 +31,7 @@ const SkillCard = ({ icon, index }: SkillProps) => {
         <Image
           src={`/images/${icon}`}
           alt="skill"
-          width={83}
+          width={90}
           height={100}
           loading="eager"
           className="object-contain h-14"
