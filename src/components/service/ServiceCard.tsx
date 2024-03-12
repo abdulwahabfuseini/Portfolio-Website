@@ -35,6 +35,7 @@ const ServiceCard = ({ id, title, gif, desc }: ServiceProps) => {
                   src={`/gif/${gif}`}
                   alt="service"
                   fill
+                  loading="eager"
                   unoptimized
                   draggable="false"
                   className="object-contain hover:scale-110"

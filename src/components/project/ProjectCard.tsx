@@ -41,6 +41,7 @@ const ProjectCard = ({ link, code, imgUrl, connect, projectName, desc, tools }: 
                 width={50}
                 height={50}
                 src={`/images/${connect}`}
+                loading="eager"
                 alt="link"
                 draggable="false"
               />

@@ -23,7 +23,7 @@ const Project = () => {
   }, [loading]);
 
   return (
-    <div className="w-full h-full px-4 py-10 mx-auto max-w-7xl">
+    <div>
       <HeadTitle title="latest Projects" text="Portfolio" />
       <div className="grid max-w-6xl mx-auto place-items-center">
         <motion.div

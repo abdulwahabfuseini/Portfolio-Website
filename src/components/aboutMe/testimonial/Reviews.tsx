@@ -20,26 +20,30 @@ const Reviews = () => {
   const [records, setRecords] = useState<Comment[]>([]);
 
   useEffect(() => {
+    setLoading(true);
     const getComment = async () => {
-      setLoading(true);
-      const res = await fetch("/api/comment", {
-        cache: "no-store",
-        method: "GET",
-      });
+      try {
+        const res = await fetch("/api/comment", {
+          cache: "no-store",
+        });
 
-      if (res.ok) {
-        router.refresh();
+        const client = await res.json();
+
+        console.log("API Response:", client);
+
+        if (res.ok) {
+          router.refresh();
+        }
+
+        setRecords(client);
+
+        setTimeout(() => {
+          setLoading(false);
+        }, 100);
+        
+      } catch (error) {
+        throw new Error("Failed to fetch data");
       }
-
-      const client = await res.json();
-
-      console.log("API Response:", client);
-
-      setRecords(client);
-
-      setTimeout(() => {
-        setLoading(false);
-      }, 100);
     };
     getComment();
   }, [router]);
@@ -61,7 +65,7 @@ const Reviews = () => {
       </div>
       <div>
         {loading ? (
-          <h1 className="text-xl mt-4 mb-24">Please Wait ...</h1>
+          <h1 className="text-xl mt-4 mb-24">Please Wait ...</h1> 
         ) : (
           <Swiper
             navigation={{ nextEl, prevEl }}

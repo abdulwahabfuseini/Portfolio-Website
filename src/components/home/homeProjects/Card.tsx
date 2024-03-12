@@ -8,6 +8,7 @@ const Card = ({ projectName, imgUrl, link }: CardProps) => {
         <Image
           width={800}
           height={800}
+          loading="eager"
           src={`/images/${imgUrl}`}
           alt="project"
           quality={100}

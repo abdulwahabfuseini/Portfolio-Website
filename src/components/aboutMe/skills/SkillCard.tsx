@@ -33,6 +33,7 @@ const SkillCard = ({ icon, index }: SkillProps) => {
           alt="skill"
           width={83}
           height={100}
+          loading="eager"
           className="object-contain h-14"
           draggable="false"
         />

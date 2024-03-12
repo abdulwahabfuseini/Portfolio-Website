@@ -4,14 +4,13 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const POST = async (req: NextRequest) => {
   const body = await req.json();
-  const { fullName, email, occupation, description } = body
+  const { fullName, email, occupation, description } = body;
   try {
     await connectMongoDB();
- 
+
     if (!fullName || !email || !occupation || !description) {
-      
     }
-   
+
     const review = new Review({
       fullName,
       email,
@@ -21,20 +20,14 @@ export const POST = async (req: NextRequest) => {
 
     await review.save();
 
-    return NextResponse.json(
-      { message: "Thanks for your comment", data: review },
-      {
-        status: 201,
-        headers: {
-          "content-Type": "application/json",
-        },
-      }
-    );
+    return new NextResponse("Thanks for your comment", {
+      status: 201,
+      headers: {
+        "content-Type": "application/json",
+      },
+    });
   } catch (error) {
-    return NextResponse.json(
-      { message: "Oops! Failed to create review" },
-      { status: 500 }
-    );
+    return new NextResponse("Oops! Failed to create review", { status: 500 });
   }
 };
 
@@ -50,7 +43,7 @@ export const GET = async (req: NextRequest) => {
         { status: 404 }
       );
     }
-    return new NextResponse(JSON.stringify(reviews), {status: 201})
+    return new NextResponse(JSON.stringify(reviews), { status: 201 });
   } catch (error) {
     return NextResponse.json(
       { message: "Oops! Failed to get all reviews" },

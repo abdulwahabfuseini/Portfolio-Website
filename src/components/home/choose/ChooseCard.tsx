@@ -9,6 +9,7 @@ const ChooseCard = ({ title, icon, desc }: ChooseProps) => {
         <Image
           src={`/SVG/${icon}`}
           alt=""
+          loading="eager"
           width={60}
           height={60}
           quality={100}

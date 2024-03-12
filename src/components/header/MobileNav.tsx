@@ -5,7 +5,7 @@ import { HiMiniBars3BottomRight } from "react-icons/hi2";
 import { navigate } from "../../assets/navigation";
 import { VscChevronRight } from "react-icons/vsc";
 import Link from "next/link";
-
+import { AiOutlineClose } from "react-icons/ai";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/utils/motion";
 import { Drawer } from "antd";
@@ -20,7 +20,11 @@ const MobileNav = () => {
   return (
     <div  className="flex lg:hidden">
       <button onClick={openDrawer} className="">
-        <HiMiniBars3BottomRight className="w-8 h-8 " />
+      {openNav ? (
+          <AiOutlineClose className="w-8 h-8" />
+        ) : (
+          <HiMiniBars3BottomRight className="w-8 h-8 " />
+        )}
       </button>
       <motion.div initial="hidden" whileInView={"show"}  variants={fadeIn("up", 2.5)}>
         <Drawer

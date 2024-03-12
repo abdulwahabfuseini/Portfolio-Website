@@ -37,7 +37,12 @@ const AboutMe = () => {
   return (
     <div className="pt-16 md:pt-28 pb-10">
       <HeadTitle title="Biography" text="About Me" />
-      <motion.div initial="hidden" whileInView={"show"}  variants={fadeIn("up", 0.3)}  className="grid max-w-xl grid-cols-2 gap-3 px-6 mx-auto sm:grid-cols-4 sm:bg-glass place-content-center sm:p-1">
+      <motion.div
+        initial="hidden"
+        whileInView={"show"}
+        variants={fadeIn("up", 0.3)}
+        className="grid max-w-xl grid-cols-2 gap-3 px-6 mx-auto sm:grid-cols-4 sm:bg-glass place-content-center sm:p-1"
+      >
         <button
           onClick={() => setFilter("Background")}
           className={
@@ -79,16 +84,17 @@ const AboutMe = () => {
           Experience
         </button>
       </motion.div>
-      <div
-       
-        className="flex flex-col-reverse items-center py-3 sm:py-0 sm:grid sm:grid-cols-3 sm:gap-x-8 lg:gap-x-14 "
-      >
-        <div className="col-span-1">
-          {filter === "Background" && (
-            <motion.div initial="hidden" whileInView={"show"}  variants={fadeIn("left", 0.3)}>
-              {loading ? (
-                "Loading.."
-              ) : (
+      {loading ? (
+        <h1 className="h-screen text-xl py-12 px-4">Please Wait ...</h1>
+      ) : (
+        <div className="flex flex-col-reverse items-center py-3 sm:py-0 sm:grid sm:grid-cols-3 sm:gap-x-8 lg:gap-x-14 ">
+          <div className="col-span-1">
+            {filter === "Background" && (
+              <motion.div
+                initial="hidden"
+                whileInView={"show"}
+                variants={fadeIn("left", 0.3)}
+              >
                 <Image
                   src="/SVG/profile.png"
                   alt=""
@@ -98,14 +104,14 @@ const AboutMe = () => {
                   quality={100}
                   draggable="false"
                 />
-              )}
-            </motion.div>
-          )}
-          {filter === "Skills" && (
-            <motion.div initial="hidden" whileInView={"show"}  variants={fadeIn("left", 0.3)}>
-              {loading ? (
-                "Loading.."
-              ) : (
+              </motion.div>
+            )}
+            {filter === "Skills" && (
+              <motion.div
+                initial="hidden"
+                whileInView={"show"}
+                variants={fadeIn("left", 0.3)}
+              >
                 <Image
                   src="/SVG/programming.png"
                   alt=""
@@ -115,31 +121,31 @@ const AboutMe = () => {
                   className="object-contain w-full bounce"
                   draggable="false"
                 />
-              )}
-            </motion.div>
-          )}
-          {filter === "Education" && (
-            <motion.div initial="hidden" whileInView={"show"}  variants={fadeIn("left", 0.3)}>
-              {loading ? (
-                "Loading.."
-              ) : (
+              </motion.div>
+            )}
+            {filter === "Education" && (
+              <motion.div
+                initial="hidden"
+                whileInView={"show"}
+                variants={fadeIn("left", 0.3)}
+              >
                 <Image
                   src="/SVG/student.png"
                   alt=""
-                  width={300}
+                  width={260}
                   height={600}
                   quality={100}
                   className="object-contain"
                   draggable="false"
                 />
-              )}
-            </motion.div>
-          )}
-          {filter === "Experience" && (
-            <motion.div initial="hidden" whileInView={"show"}  variants={fadeIn("left", 0.3)}>
-              {loading ? (
-                "Loading.."
-              ) : (
+              </motion.div>
+            )}
+            {filter === "Experience" && (
+              <motion.div
+                initial="hidden"
+                whileInView={"show"}
+                variants={fadeIn("left", 0.3)}
+              >
                 <Image
                   src="/SVG/experience.png"
                   alt=""
@@ -149,18 +155,20 @@ const AboutMe = () => {
                   className="object-contain"
                   draggable="false"
                 />
-              )}
+              </motion.div>
+            )}
+          </div>
+          <div className="w-full h-full py-6 sm:col-span-2">
+            <motion.div
+              initial="hidden"
+              whileInView={"show"}
+              variants={fadeIn("up", 0.4)}
+            >
+              {content}
             </motion.div>
-          )}
+          </div>
         </div>
-        <div className="w-full h-full py-6 sm:col-span-2">
-          {loading ? (
-            <h1 className="h-screen text-xl">Please Wait ...</h1>
-          ) : (
-            <motion.div initial="hidden" whileInView={"show"}  variants={fadeIn("up", 0.4)}>{content}</motion.div>
-          )}
-        </div>
-      </div>
+      )}
     </div>
   );
 };

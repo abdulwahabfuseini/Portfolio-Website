@@ -2,10 +2,12 @@
 
 import { Button, Form, Input } from "antd";
 import TextArea from "antd/es/input/TextArea";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const ReviewForm = () => {
   const [form] = Form.useForm();
+  const router = useRouter()
   const [loading, setLoading] = useState(false);
   const [userDetails, setUserDetails] = useState({
     fullName: "",
@@ -27,6 +29,7 @@ const ReviewForm = () => {
       });
       if (res.ok) {
         form.resetFields();
+        router.push("/")
         alert("Thank you for adding a testimonial");
       }
     } catch (error) {
