@@ -10,7 +10,6 @@ import { motion } from "framer-motion";
 import { fadeIn } from "@/utils/motion";
 import { Drawer } from "antd";
 
-
 const MobileNav = () => {
   const [openNav, setOpenNav] = useState(false);
 
@@ -18,15 +17,19 @@ const MobileNav = () => {
   const closeDrawer = () => setOpenNav(false);
 
   return (
-    <div  className="flex lg:hidden">
+    <div className="flex lg:hidden">
       <button onClick={openDrawer} className="">
-      {openNav ? (
+        {openNav ? (
           <AiOutlineClose className="w-8 h-8" />
         ) : (
           <HiMiniBars3BottomRight className="w-8 h-8 " />
         )}
       </button>
-      <motion.div initial="hidden" whileInView={"show"}  variants={fadeIn("up", 2.5)}>
+      <motion.div
+        initial="hidden"
+        whileInView={"show"}
+        variants={fadeIn("up", 2.5)}
+      >
         <Drawer
           closable={false}
           placement="bottom"
