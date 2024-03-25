@@ -19,8 +19,8 @@ const Loading = ({ children }: { children: React.ReactNode }) => {
           <Image
             src="/images/front2.gif"
             alt=""
-            width={150}
-            height={150}
+            width={120}
+            height={120}
             unoptimized
             draggable="false"
           />

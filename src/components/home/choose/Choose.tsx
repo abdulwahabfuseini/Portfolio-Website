@@ -14,10 +14,10 @@ const Choose = () => {
       <motion.h1
         initial="hidden"
         whileInView={"show"}
-        variants={fadeIn("down", 0.5)}
+        variants={fadeIn("up", 0.5)}
         className="text-lg"
       >
-        Why you should choose me as a frontend web developer:
+        Why you should choose me as a Frontend Web Developer:
       </motion.h1>
       <div className="py-4 grid sm:grid-auto-fit-xl">
         {ChooseData.map((choose) => (

@@ -9,17 +9,19 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import { useRouter } from "next/navigation";
 
 const HomeProjects = () => {
-  const router = useRouter()
+  const router = useRouter();
 
   return (
     <div className="py-20">
       <HeadTitle title="Latest Projects" text=" Portfolio" />
-      <div
-        
-        className="grid w-full gap-3 py-8 sm:grid-auto-fit-xl"
-      >
+      <div className="grid w-full gap-3 py-8 sm:grid-auto-fit-xl">
         {ProjectData.map((item) => (
-          <motion.div initial="hidden" whileInView={"show"}  variants={fadeIn("up", 0.4)} key={item.id}>
+          <motion.div
+            initial="hidden"
+            whileInView={"show"}
+            variants={fadeIn("up", 0.4)}
+            key={item.id}
+          >
             <Card
               id={item.id}
               projectName={item.projectName}
@@ -28,12 +30,18 @@ const HomeProjects = () => {
             />
           </motion.div>
         ))}
-          <button onClick={() => router.push("/projects")} className=" py-5 light-background group text-lg font-semibold flex items-center gap-1 justify-center">
+        <motion.button
+          initial="hidden"
+          whileInView={"show"}
+          variants={fadeIn("up", 0.4)}
+          onClick={() => router.push("/projects")}
+          className=" py-5 light-background group text-xl font-semibold flex items-center gap-2 justify-center"
+        >
           View all Projects{" "}
           <span>
-            <FaArrowRightLong className="w-16 h-10 p-2 rounded-full group-hover:scale-x-125 group-hover:transition-all" />
+            <FaArrowRightLong className="w-8 h-8  rounded-full group-hover:scale-x-125 group-hover:transition-all" />
           </span>
-        </button>
+        </motion.button>
       </div>
     </div>
   );

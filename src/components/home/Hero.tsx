@@ -7,7 +7,7 @@ import { Typewriter } from "react-simple-typewriter";
 import Button from "../Button";
 import Social from "./Social";
 import { motion } from "framer-motion";
-import { fadeIn } from "@/utils/motion";
+import { fadeIn, zoomIn } from "@/utils/motion";
 
 const Hero = () => {
   return (
@@ -50,12 +50,12 @@ const Hero = () => {
             I've designed web applications with user experience at the
             forefront, ensuring seamless navigation and intuitive interactions
           </p>
-          <div className="flex items-center gap-x-4">
+          <div className="flex items-center gap-4">
             <Button url="/contact" text="Hire Me" />
             <Button url="/about" text="About Me" />
           </div>
         </motion.div>
-        <motion.div initial="hidden" whileInView={"show"}  variants={fadeIn("right", 0.5)}>
+        <motion.div initial="hidden" whileInView={"show"}  variants={zoomIn(0.6)}>
           <Image
             src="/images/front2.gif"
             alt=""

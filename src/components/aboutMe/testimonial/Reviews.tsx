@@ -40,7 +40,6 @@ const Reviews = () => {
         setTimeout(() => {
           setLoading(false);
         }, 100);
-        
       } catch (error) {
         throw new Error("Failed to fetch data");
       }
@@ -65,7 +64,7 @@ const Reviews = () => {
       </div>
       <div>
         {loading ? (
-          <h1 className="text-xl mt-4 mb-24">Please Wait ...</h1> 
+          <h1 className="text-xl mt-4 mb-24">Please Wait ...</h1>
         ) : (
           <Swiper
             navigation={{ nextEl, prevEl }}
@@ -94,34 +93,49 @@ const Reviews = () => {
             className="mt-10 mb-14"
           >
             <div>
-              {records.map((review, index) => {
-                const { fullName, email, occupation, description } = review;
-                return (
-                  <SwiperSlide key={index} className="bg-glass p-4 shadow-lg">
-                    <div className="relative grid ">
-                      <h1 className="text-xl font-bold">{fullName}</h1>
-                      <h1 className="Text">{email}</h1>
-                      <FaQuoteRight className="text-3xl -top-1.5 right-3 absolute " />
-                      <Typography.Paragraph
-                        className="text-base text-white py-2"
-                        ellipsis={{
-                          rows: 3,
-                          expandable: true,
-                          symbol: "Read More",
-                        }}
+              {records.length > 0 ? (
+                <div>
+                  {records.map((review, index) => {
+                    const { fullName, email, occupation, description } = review;
+                    return (
+                      <SwiperSlide
+                        key={index}
+                        className="bg-glass p-4 shadow-lg"
                       >
-                        {description}
-                      </Typography.Paragraph>
-                      <div className="flex items-center justify-between">
-                        <h1 className="text-lg font-semibold  capitalize">
-                          {occupation}
-                        </h1>
-                        <Rate defaultValue={5} allowHalf className="text-sm" />
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                );
-              })}
+                        <div className="relative grid ">
+                          <h1 className="text-xl font-bold">{fullName}</h1>
+                          <h1 className="Text">{email}</h1>
+                          <FaQuoteRight className="text-3xl -top-1.5 right-3 absolute " />
+                          <Typography.Paragraph
+                            className="text-base text-white py-2"
+                            ellipsis={{
+                              rows: 3,
+                              expandable: true,
+                              symbol: "Read More",
+                            }}
+                          >
+                            {description}
+                          </Typography.Paragraph>
+                          <div className="flex items-center justify-between">
+                            <h1 className="text-lg font-semibold  capitalize">
+                              {occupation}
+                            </h1>
+                            <Rate
+                              defaultValue={5}
+                              allowHalf
+                              className="text-sm"
+                            />
+                          </div>
+                        </div>
+                      </SwiperSlide>
+                    );
+                  })}
+                </div>
+              ) : (
+                <p className="text-sm text-left font-semibold">
+                  Failed to fetch Reviews. Please check your internet connection
+                </p>
+              )}
             </div>
           </Swiper>
         )}

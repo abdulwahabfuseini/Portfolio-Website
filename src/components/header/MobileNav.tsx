@@ -34,7 +34,7 @@ const MobileNav = () => {
           closable={false}
           placement="bottom"
           open={openNav}
-          height={281}
+          height={280}
           onClose={closeDrawer}
           className="z-50 transition-all ease-in rounded-t-xl text-black"
         >

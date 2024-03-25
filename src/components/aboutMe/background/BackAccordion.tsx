@@ -28,7 +28,7 @@ const BackAccordion: React.FC = () => {
             <button>{open === 1 ? <FaChevronUp /> : <FaChevronDown />}</button>
           </div>
         </AccordionHeader>
-        <AccordionBody className="px-3 text-lg font-normal text-white bg-main">
+        <AccordionBody className="px-3 text-lg font-normal bg-glass text-white">
           A highly skilled and creative web developer in designing and
           building interactive and user-friendly websites and web applications.
           I am passionate about staying up-to-date with the latest web
@@ -51,7 +51,7 @@ const BackAccordion: React.FC = () => {
             <button>{open === 2 ? <FaChevronUp /> : <FaChevronDown />}</button>
           </div>
         </AccordionHeader>
-        <AccordionBody className="px-3 text-lg font-normal text-white bg-main">
+        <AccordionBody className="px-3 text-lg font-normal bg-glass text-white">
           As a frontend developer, my objective is to learn and grow in a
           dynamic development environment. I aim to use my expertise in HTML,
           CSS, JavaScript to create exceptional user interfaces while gaining

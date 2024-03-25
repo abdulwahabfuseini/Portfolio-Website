@@ -37,7 +37,7 @@ const EducAccordion = () => {
             <button>{open === 1 ? <FaChevronUp /> : <FaChevronDown />}</button>
           </div>
         </AccordionHeader>
-        <AccordionBody className="px-3 text-lg font-normal text-white bg-main">
+        <AccordionBody className="px-3 text-lg font-normal bg-glass shadow-inner text-white">
           <div className="flex items-center py-2 gap-x-3 sm:gap-x-6">
             <Image
               src="/SVG/school.png"
@@ -48,7 +48,7 @@ const EducAccordion = () => {
             />
             <p className="text-lg">KUMASI TECHNICAL UNIVERSITY</p>
           </div>
-          <div className="flex items-center gap-x-3 sm:gap-x-6">
+          <div className="flex items-center gap-x-3 sm:gap-x-6 border-t pt-2">
             <Image
               src="/SVG/certificate.png"
               alt=""
@@ -81,7 +81,7 @@ const EducAccordion = () => {
             <button>{open === 2 ? <FaChevronUp /> : <FaChevronDown />}</button>
           </div>
         </AccordionHeader>
-        <AccordionBody className="px-3 text-lg font-normal text-white bg-main">
+        <AccordionBody className="px-3 text-lg font-normal bg-glass shadow-inner text-white">
           <div className="flex items-center py-2 gap-x-3 sm:gap-x-6">
             <Image
               src="/SVG/school.png"
@@ -92,7 +92,7 @@ const EducAccordion = () => {
             />
             <p className="text-lg">TAKORADI SENIOR HIGH SCHOOL</p>
           </div>
-          <div className="flex items-center gap-x-3 sm:gap-x-6">
+          <div className="flex items-center gap-x-3 sm:gap-x-6 border-t pt-2">
             <Image
               src="/SVG/certificate.png"
               alt=""
@@ -127,7 +127,7 @@ const EducAccordion = () => {
             <button>{open === 2 ? <FaChevronUp /> : <FaChevronDown />}</button>
           </div>
         </AccordionHeader>
-        <AccordionBody className="px-3 text-lg font-normal text-white bg-main">
+        <AccordionBody className="px-3 text-lg font-normal bg-glass shadow-inner text-white">
           <div className="flex items-center py-2 gap-x-3 sm:gap-x-6">
             <Image
               src="/SVG/school.png"
@@ -138,7 +138,7 @@ const EducAccordion = () => {
             />
             <p className="text-lg">GOD FIRST PREPARATORY & JHS</p>
           </div>
-          <div className="flex items-center gap-x-3 sm:gap-x-6">
+          <div className="flex items-center gap-x-3 sm:gap-x-6 border-t pt-2">
             <Image
               src="/SVG/certificate.png"
               alt=""

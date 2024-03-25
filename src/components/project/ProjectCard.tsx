@@ -1,5 +1,6 @@
 import { ProjectProps } from "@/utils/Types";
 import Image from "next/image";
+import Link from "next/link";
 import { FaEye, FaGithub } from "react-icons/fa";
 
 const ProjectCard = ({ link, code, imgUrl, connect, projectName, desc, tools }: ProjectProps) => {
@@ -7,18 +8,18 @@ const ProjectCard = ({ link, code, imgUrl, connect, projectName, desc, tools }: 
     <div>
       <div className="relative overflow-hidden  bg-glass p-2.5 rounded pb-3">
         <div className="flex items-center justify-between py-2">
-          <div className="flex items-center gap-2">
+          <Link href={link} target="_blank" className="flex items-center gap-1.5">
             <FaEye className="text-lg" />
-            <a href={link} target="_blank" className="text-sm">
+            <p  className="text-sm">
               View Demo
-            </a>
-          </div>
-          <div className="flex items-center gap-2">
-            <a href={code} target="_blank" className="text-sm">
+            </p>
+          </Link>
+          <Link  href={code} target="_blank" className="flex items-center gap-1.5">
+            <p className="text-sm">
               View Code
-            </a>
+            </p>
             <FaGithub className="text-lg" />
-          </div>
+          </Link>
         </div>
         <div className="relative group">
           <Image
@@ -27,7 +28,7 @@ const ProjectCard = ({ link, code, imgUrl, connect, projectName, desc, tools }: 
             src={`/images/${imgUrl}`}
             alt="project"
             quality={100}
-            className="h-52 sm:h-56 rounded-xl object-cover"
+            className="h-52 sm:h-56 rounded-xl object-cover group-hover:rounded-none"
             draggable="false"
           />
           <div className="absolute top-0 left-0 right-0 hidden w-full h-full py-12 bg-black bg-opacity-75 group-hover:block">
@@ -53,7 +54,7 @@ const ProjectCard = ({ link, code, imgUrl, connect, projectName, desc, tools }: 
         <h1 className="py-2 text-xl text-center Text">{projectName}</h1>
         <p className="text-center">
           {desc}{" "}
-          <span className="flex flex-wrap items-center justify-center gap-2 pt-2">
+          <div className="flex flex-wrap items-center justify-center gap-1 cursor-pointer pt-2">
             {tools.map((item, index: number) => (
               <p
                 key={index}
@@ -62,7 +63,7 @@ const ProjectCard = ({ link, code, imgUrl, connect, projectName, desc, tools }: 
                 {item.tool}
               </p>
             ))}
-          </span>
+          </div>
         </p>
       </div>
     </div>

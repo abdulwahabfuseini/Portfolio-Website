@@ -30,16 +30,16 @@ const AccordionTab = () => {
           <div className="flex items-start justify-between gap-4 w-full">
             <div className="flex text-lg flex-col text-left items-start">
               WEBDRAFT IT SOLUTION - KUMASI, GHANA
-              <h4 className="text-base">ROLE: INTERN</h4>
-              <h2 className="text-base">FEBRUARY, 2023 - SEPTEMBER, 2023</h2>
+              <p className="text-sm">ROLE: INTERN</p>
+              <p className="text-sm">FEBRUARY, 2023 - SEPTEMBER, 2023</p>
             </div>
             <button className="text-xl">
               {open === 1 ? <FaChevronUp /> : <FaChevronDown />}
             </button>
           </div>
         </AccordionHeader>
-        <AccordionBody className=" text-base font-normal bg-main px-1.5">
-          <ul className="px-5 py-3 leading-8 text-white list-disc sm:px-8">
+        <AccordionBody className=" text-base font-normal bg-glass px-1.5">
+          <ul className="px-5 py-2 text-white list-disc sm:px-8 grid gap-2">
             <li>
               Championed responsive design principles, guaranteeing a seamless
               experience for users across various devices, including desktop,
@@ -80,16 +80,16 @@ const AccordionTab = () => {
           <div className="flex items-start justify-between w-full gap-4">
             <div className="flex text-lg flex-col text-left items-start">
               AVENTLE TECHNOLOGIES – KUMASI, GHANA
-              <h4 className="text-base">ROLE: FREELANCER</h4>
-              <h2 className="text-base">AUGUST, 2022 - DECEMBER, 2022</h2>
+              <p className="text-sm">ROLE: FREELANCER</p>
+              <p className="text-sm">AUGUST, 2022 - DECEMBER, 2022</p>
             </div>
             <button className="text-xl">
               {open === 2 ? <FaChevronUp /> : <FaChevronDown />}
             </button>
           </div>
         </AccordionHeader>
-        <AccordionBody className=" px-1.5 text-base font-normal bg-main">
-          <ul className="px-5 py-3 leading-10 text-white list-disc sm:px-8">
+        <AccordionBody className=" px-1.5 text-base font-normal bg-glass">
+          <ul className="px-5 py-2  text-white list-disc sm:px-8 grid gap-2">
             <li>
               Collaborated with UX/UI designers to turn wireframes and mockups
               into responsive, pixel-perfect designs.

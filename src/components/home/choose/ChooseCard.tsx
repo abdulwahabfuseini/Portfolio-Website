@@ -10,8 +10,8 @@ const ChooseCard = ({ title, icon, desc }: ChooseProps) => {
           src={`/SVG/${icon}`}
           alt=""
           loading="eager"
-          width={60}
-          height={60}
+          width={50}
+          height={50}
           quality={100}
           className=" object-contain"
         />

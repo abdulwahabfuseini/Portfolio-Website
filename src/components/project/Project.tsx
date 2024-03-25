@@ -19,7 +19,7 @@ const Project = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 200);
+    }, 600);
   }, [loading]);
 
   return (
@@ -105,7 +105,7 @@ const Project = () => {
               <div className="w-full">
                 {toggleTab === 2 && (
                   <div className="grid w-full gap-4 py-10 sm:grid-cols-2 lg:grid-cols-3">
-                    {PortFolio.slice(2, 5).map((project) => (
+                    {PortFolio.slice(2, 6).map((project) => (
                       <motion.div
                         initial="hidden"
                         whileInView={"show"}
@@ -129,7 +129,7 @@ const Project = () => {
               <div className="w-full">
                 {toggleTab === 3 && (
                   <div className="grid w-full gap-4 py-10 sm:grid-cols-2 lg:grid-cols-3">
-                    {PortFolio.slice(5, 8).map((project) => (
+                    {PortFolio.slice(6, 9).map((project) => (
                       <motion.div
                         initial="hidden"
                         whileInView={"show"}

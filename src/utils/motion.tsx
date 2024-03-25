@@ -1,3 +1,4 @@
+import { easeInOut } from "framer-motion";
 import { FadeIn } from "./Types";
 
 export const fadeIn = (direction: string, delay: number): FadeIn => {
@@ -16,6 +17,27 @@ export const fadeIn = (direction: string, delay: number): FadeIn => {
         delay: delay,
         duration: 1.2,
         ease: [0.25, 0.25, 0.25, 0.25],
+      },
+    },
+  };
+};
+
+
+  
+export const zoomIn = (delay: number) => {
+  return {
+    hidden: {
+      scale: 0,
+      opacity: 0,
+    },
+    show: {
+      scale: 1,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        delay: delay,
+        duration: 1.2,
+        ease: easeInOut,
       },
     },
   };

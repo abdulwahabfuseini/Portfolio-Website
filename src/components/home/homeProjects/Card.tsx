@@ -12,7 +12,7 @@ const Card = ({ projectName, imgUrl, link }: CardProps) => {
           src={`/images/${imgUrl}`}
           alt="project"
           quality={100}
-          className="h-52 sm:h-56 rounded-xl object-cover"
+          className="h-52 sm:h-56 rounded-xl object-cover group-hover:rounded-none"
           draggable="false"
         />
         <div className="absolute top-0 left-0 right-0 hidden w-full h-full py-20 bg-black bg-opacity-75 group-hover:block">
