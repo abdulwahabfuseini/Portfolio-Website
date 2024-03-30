@@ -5,6 +5,8 @@ import StarsCanvas from "@/components/Stars";
 import Loading from "./loading";
 import Navbar from "@/components/header/Navbar";
 import Footer from "@/components/Footer";
+import { Analytics } from "@vercel/analytics/react"
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata: Metadata = {
   title: "Portfolio | FUSEINI ABDUL WAHAB",
@@ -32,6 +34,8 @@ export default function RootLayout({
             <Footer />
           </Loading>
         </div>
+        <Analytics/>
+        <SpeedInsights />
       </body>
     </html>
   );
