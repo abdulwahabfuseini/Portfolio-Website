@@ -37,7 +37,7 @@ const Hero = () => {
             <h4 className="text-2xl font-bold lg:text-4xl">
               A{" "}
               <Typewriter
-                words={["FrontEnd Web Developer"]}
+                words={["Frontend Web Developer"]}
                 loop={Infinity}
                 cursor
                 cursorStyle="|"

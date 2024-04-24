@@ -1,4 +1,3 @@
-
 export const connect = [
   {
     id: 1,
@@ -82,15 +81,15 @@ export const skill = [
   },
   {
     id: 4,
-    icon: "react.png",
+    icon: "type.png",
   },
   {
     id: 5,
-    icon: "next.png",
+    icon: "react.png",
   },
   {
     id: 6,
-    icon: "type.png",
+    icon: "next.png",
   },
   {
     id: 7,
@@ -99,12 +98,11 @@ export const skill = [
   },
   {
     id: 8,
-    icon: "material-ui.png",
+    icon: "node-js.png",
   },
   {
     id: 9,
-    icon: "antd.png",
-    title: "ANT DESIGN",
+    icon: "framer.png",
   },
   {
     id: 10,
@@ -116,27 +114,49 @@ export const skill = [
   },
   {
     id: 12,
-    icon: "postman.png",
+    icon: "prisma.png",
   },
   {
     id: 13,
-    icon: "git.png",
+    icon: "postgre.png",
   },
   {
     id: 14,
+    icon: "cloud.png",
+  },
+
+  // {
+  //   id: 15,
+  //   icon: "Aws.png",
+  // },
+  {
+    id: 16,
+    icon: "material-ui.png",
+  },
+  {
+    id: 17,
+    icon: "antd.png",
+    title: "ANT DESIGN",
+  },
+  {
+    id: 18,
+    icon: "postman.png",
+  },
+  {
+    id: 19,
+    icon: "git.png",
+  },
+  {
+    id: 20,
     icon: "github.png",
   },
   {
-    id: 15,
-    icon: "node-js.png",
+    id: 21,
+    icon: "docker.png",
   },
   {
-    id: 16,
-    icon: "framer.png",
-  },
-  {
-    id: 16,
-    icon: "prisma.png",
+    id: 22,
+    icon: "figma.png",
   },
 ];
 

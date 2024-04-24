@@ -76,6 +76,50 @@ export const serviceData = [
     desc1:
       "I ensure reliable, secure, and high-performance hosting. By addressing factors such as server configuration, security protocols, and uptime guarantees, I enable clients to have a robust online presence with a hosting solution that aligns seamlessly with their web development needs",
   },
+  {
+    id: "08",
+    gif: "hosting.gif",
+    icon: "webhosting.png",
+    title: "Database Managment",
+    desc: "Delivering a holistic web development service, I extend my expertise to web hosting solutions. With a deep understanding of various hosting platforms and services, I guide clients in selecting the most suitable hosting",
+    desc2:
+      "Delivering a holistic web development service, I extend my expertise to web hosting solutions. With a deep understanding of various hosting platforms and services, I guide clients in selecting the most suitable hosting environment tailored to their project requirements. From shared hosting for smaller websites to scalable cloud solutions for larger applications, ",
+    desc1:
+      "I ensure reliable, secure, and high-performance hosting. By addressing factors such as server configuration, security protocols, and uptime guarantees, I enable clients to have a robust online presence with a hosting solution that aligns seamlessly with their web development needs",
+  },
+  {
+    id: "09",
+    gif: "hosting.gif",
+    icon: "webhosting.png",
+    title: "Server Configuration & Development",
+    desc: "Delivering a holistic web development service, I extend my expertise to web hosting solutions. With a deep understanding of various hosting platforms and services, I guide clients in selecting the most suitable hosting",
+    desc2:
+      "Delivering a holistic web development service, I extend my expertise to web hosting solutions. With a deep understanding of various hosting platforms and services, I guide clients in selecting the most suitable hosting environment tailored to their project requirements. From shared hosting for smaller websites to scalable cloud solutions for larger applications, ",
+    desc1:
+      "I ensure reliable, secure, and high-performance hosting. By addressing factors such as server configuration, security protocols, and uptime guarantees, I enable clients to have a robust online presence with a hosting solution that aligns seamlessly with their web development needs",
+  },
+  {
+    id: "10",
+    gif: "hosting.gif",
+    icon: "webhosting.png",
+    title: "Performance Optimation",
+    desc: "Delivering a holistic web development service, I extend my expertise to web hosting solutions. With a deep understanding of various hosting platforms and services, I guide clients in selecting the most suitable hosting",
+    desc2:
+      "Delivering a holistic web development service, I extend my expertise to web hosting solutions. With a deep understanding of various hosting platforms and services, I guide clients in selecting the most suitable hosting environment tailored to their project requirements. From shared hosting for smaller websites to scalable cloud solutions for larger applications, ",
+    desc1:
+      "I ensure reliable, secure, and high-performance hosting. By addressing factors such as server configuration, security protocols, and uptime guarantees, I enable clients to have a robust online presence with a hosting solution that aligns seamlessly with their web development needs",
+  },
+  {
+    id: "11",
+    gif: "hosting.gif",
+    icon: "webhosting.png",
+    title: "Maintenance and Support",
+    desc: "Delivering a holistic web development service, I extend my expertise to web hosting solutions. With a deep understanding of various hosting platforms and services, I guide clients in selecting the most suitable hosting",
+    desc2:
+      "Delivering a holistic web development service, I extend my expertise to web hosting solutions. With a deep understanding of various hosting platforms and services, I guide clients in selecting the most suitable hosting environment tailored to their project requirements. From shared hosting for smaller websites to scalable cloud solutions for larger applications, ",
+    desc1:
+      "I ensure reliable, secure, and high-performance hosting. By addressing factors such as server configuration, security protocols, and uptime guarantees, I enable clients to have a robust online presence with a hosting solution that aligns seamlessly with their web development needs",
+  },
 ];
 
 export const ProjectPlan = [
