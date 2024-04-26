@@ -50,8 +50,8 @@ export const PortFolio = [
     id: 4,
     imgUrl: "read.png",
     projectName: "Readify",
-    code: "https://github.com/abdulwahabfuseini/Readify",
-    link: "https://readify-mauve.vercel.app/",
+    code: "https://github.com/abdulwahabfuseini/readify",
+    link: "https://readify-orpin.vercel.app/",
     connect: "link.png",
     desc: "An Online Boook Search made with",
     tools: [
