@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import HeadTitle from "@/components/HeadTitle";
 import React from "react";
@@ -14,10 +14,18 @@ const Pricing = () => {
       <div className="max-w-5xl mx-auto">
         <div className="grid w-full gap-3 py-6 sm:grid-auto-fit-lg sm:place-content-center">
           {ProjectPlan.map((price) => (
-            <motion.div initial="hidden" whileInView={"show"}  variants={fadeIn("left", 0.4)} key={price.id}>
-               <PricingCard  title={price.title} amount={price?.amount} service={price.service} />
+            <motion.div
+              initial="hidden"
+              whileInView={"show"}
+              variants={fadeIn("left", 0.4)}
+              key={price.id}
+            >
+              <PricingCard
+                title={price.title}
+                amount={price?.amount}
+                service={price.service}
+              />
             </motion.div>
-           
           ))}
         </div>
       </div>

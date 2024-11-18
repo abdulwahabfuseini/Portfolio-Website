@@ -17,7 +17,7 @@ const Address = () => {
         className=""
       >
         <h4 className="mb-4 text-xl">CONTACT INFORMATION</h4>
-        <div className="flex flex-wrap w-full gap-x-9">
+        <div className="flex flex-wrap font-mono w-full gap-x-9">
           {ContactInfo.map((info) => (
             <div
               key={info.id}

@@ -48,7 +48,7 @@ const MobileNav = () => {
                 onClick={() => setOpenNav(false)}
                 className="flex items-center justify-between w-full px-4 border-b py-3 text-lg uppercase sm:text-xl"
               >
-                <span className=" hover:text-blue-600">{navLink.display}</span>{" "}
+                <span className=" hover:text-blue-600 font-mono">{navLink.display}</span>{" "}
                 <span>
                   <VscChevronRight />
                 </span>

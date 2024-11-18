@@ -14,7 +14,7 @@ const HomeProjects = () => {
   return (
     <div className="py-20">
       <HeadTitle title="Latest Projects" text=" Portfolio" />
-      <div className="grid w-full gap-3 py-8 sm:grid-auto-fit-xl">
+      <div className="grid w-full gap-2 py-8 sm:grid-auto-fit-xl">
         {ProjectData.map((item) => (
           <motion.div
             initial="hidden"

@@ -17,9 +17,9 @@ const Choose = () => {
         variants={fadeIn("up", 0.5)}
         className="text-lg"
       >
-        Why you should choose me as a Frontend Web Developer:
+        Why you should choose me as a Full-Stack Web Developer:
       </motion.h1>
-      <div className="py-4 grid sm:grid-auto-fit-xl">
+      <div className="py-4 grid sm:grid-auto-fit-xl gap-1">
         {ChooseData.map((choose) => (
           <motion.div  initial="hidden" whileInView={"show"}  variants={fadeIn("left", 0.4)} key={choose.id}>
             <ChooseCard

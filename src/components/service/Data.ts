@@ -126,7 +126,7 @@ export const ProjectPlan = [
   {
     id: 1,
     title: "basic",
-    amount: 10,
+    amount: 20,
     service: [
       {
         plan: "Next Js Website",
@@ -148,7 +148,7 @@ export const ProjectPlan = [
   {
     id: 2,
     title: "standard",
-    amount: 20,
+    amount: 35,
     service: [
       {
         plan: "Next Js Website",
@@ -170,7 +170,7 @@ export const ProjectPlan = [
   {
     id: 3,
     title: "Premium",
-    amount: 35,
+    amount: 50,
     service: [
       {
         plan: "Next Js Website",
