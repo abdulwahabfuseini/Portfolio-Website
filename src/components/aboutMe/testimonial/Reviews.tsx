@@ -133,7 +133,7 @@ const Reviews = () => {
                 </div>
               ) : (
                 <p className="text-sm text-left font-semibold">
-                  Failed to fetch Reviews. Please check your internet connection
+                  Failed to fetch Reviews. 
                 </p>
               )}
             </div>
