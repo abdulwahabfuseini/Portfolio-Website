@@ -7,6 +7,7 @@ import Navbar from "@/components/header/Navbar";
 import Footer from "@/components/Footer";
 import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import ToastContext from "@/context/ToastContext";
 
 export const metadata: Metadata = {
   title: "Portfolio | FUSEINI ABDUL WAHAB",
@@ -30,6 +31,7 @@ export default function RootLayout({
         <div className="z-40 relative">
           <Loading>
             <Navbar />
+            <ToastContext />
             <div className="mb-16 md:mb-72  lg:mb-28">{children}</div>
             <Footer />
           </Loading>
