@@ -16,11 +16,16 @@ export const navigate = [
     },
     {
         id: 4,
+        display: "Hire Me",
+        path: "/hireMe"
+    },
+    {
+        id: 5,
         display: "Projects",
         path: "/projects"
     },
     {
-        id: 5,
+        id: 6,
         display: "Contact",
         path: "/contact"
     },
