@@ -119,8 +119,6 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       return response;
     }
 
-   
-
     try {
       const product = await prisma.comments.create({
         data: {
