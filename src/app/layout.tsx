@@ -5,9 +5,10 @@ import StarsCanvas from "@/components/Stars";
 import Loading from "./loading";
 import Navbar from "@/components/header/Navbar";
 import Footer from "@/components/Footer";
-import { Analytics } from "@vercel/analytics/react"
-import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import ToastContext from "@/context/ToastContext";
+import { ReviewProvider } from "@/context/ReviewContext";
 
 export const metadata: Metadata = {
   title: "Portfolio | FUSEINI ABDUL WAHAB",
@@ -30,13 +31,15 @@ export default function RootLayout({
         </div>
         <div className="z-40 relative">
           <Loading>
-            <Navbar />
-            <ToastContext />
-            <div className="mb-16 md:mb-72  lg:mb-28">{children}</div>
-            <Footer />
+            <ReviewProvider>
+              <Navbar />
+              <ToastContext />
+              <div className="mb-16 md:mb-72  lg:mb-28">{children}</div>
+              <Footer />
+            </ReviewProvider>
           </Loading>
         </div>
-        <Analytics/>
+        <Analytics />
         <SpeedInsights />
       </body>
     </html>

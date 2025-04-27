@@ -44,9 +44,10 @@ export type CardProps = {
 };
 
 export type Comment = {
-  _id?: string;
+  id?: string;
   fullName: string;
   email: string;
+  rate: string;
   occupation: string;
   description: string;
 };

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useEffect, useState } from "react";
 import MobileNav from "./MobileNav";
@@ -6,9 +6,11 @@ import Link from "next/link";
 import { navigate } from "@/assets/navigation";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/utils/motion";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const [sticky, setSticky] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -17,9 +19,11 @@ const Navbar = () => {
   });
 
   return (
-    <div  className="w-full">
-      
-      <motion.nav initial="hidden" whileInView={"show"}  variants={fadeIn("down", 1)}
+    <div className="w-full">
+      <motion.nav
+        initial="hidden"
+        whileInView={"show"}
+        variants={fadeIn("down", 1)}
         aria-label="navbar"
         className={`${
           sticky
@@ -36,7 +40,11 @@ const Navbar = () => {
           {navigate.map((navLink) => (
             <li
               key={navLink.id}
-              className="text-xl cursor-pointer  hover:text-blue-700 hover:scale-y-105 hover:ease-in-out"
+              className={`${
+                pathname === navLink.path
+                  ? "text-yellow-300 font-semibold"
+                  : "text-gray-300"
+              } text-xl cursor-pointer  hover:text-blue-700 hover:scale-y-105 hover:ease-in-out`}
             >
               <Link href={navLink.path}>{navLink.display}</Link>
             </li>

@@ -1,132 +1,139 @@
 "use client";
 
-import { Button, Form, Input } from "antd";
+import { useReviews } from "@/context/ReviewContext";
+import { Comment } from "@/utils/Types";
+import { Button, Form, Input, Select } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
-const ReviewForm = () => {
-  const [form] = Form.useForm();
-  const router = useRouter()
+const ReviewForm = ({ closeDrawerReview }: any) => {
+  const [form] = Form.useForm<Comment>();
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [userDetails, setUserDetails] = useState({
-    fullName: "",
-    email: "",
-    occupation: "",
-    description: "",
-  });
+  const { fetchReviews } = useReviews();
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (values: Comment) => {
     setLoading(true);
+    console.log("Submitting values:", values);
+
     try {
       const res = await fetch("/api/comment", {
         method: "POST",
         headers: {
-          Accept: "application/json",
-          "content-Type": "application/json",
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(userDetails),
+        body: JSON.stringify(values),
       });
+
+      const result = await res.json();
+
       if (res.ok) {
+        toast.success(result.message || "Review Submitted Successfully! Thanks for your review");
         form.resetFields();
-        router.push("/")
-        alert("Thank you for adding a testimonial");
+        await fetchReviews();
+        closeDrawerReview(); // Close the drawer after submission
+      } else {
+        throw new Error(
+          result.message || `Request failed with status ${res.status}`
+        );
       }
-    } catch (error) {
-      alert("Oooop!!! Something went wrong. Please try again");
+    } catch (error: any) {
+      console.error("Submission Error:", error);
+      toast.error(
+        error.message || "Oooop!!! Something went wrong. Please try again"
+      );
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className=" relative  py-14">
-      <h1 className="py-6 text-xl font-bold text-center">
+    <div className="relative py-16 max-w-lg mx-auto px-4">
+      <h1 className="pb-6 text-xl font-bold text-center text-white">
         Say Something About Me
       </h1>
       <Form form={form} onFinish={handleSubmit} layout="vertical">
         <Form.Item
           name="fullName"
-          rules={[{ required: true, message: "FullName Field is Required" }]}
+          rules={[{ required: true, message: "Full Name is Required" }]}
           hasFeedback
-          className="text-lg text-blue-500"
         >
           <Input
-            name="fullName"
             type="text"
-            style={{ background: "white" }}
-            placeholder="Enter FullName"
-            onChange={(e) =>
-              setUserDetails({ ...userDetails, fullName: e.target.value })
-            }
-            className="h-12 text-lg border-2 border-green-500"
+            placeholder="Enter Full Name"
+            className="h-12 px-3 text-base border rounded border-green-500 focus:border-green-500 focus:ring-1 focus:ring-green-500"
           />
         </Form.Item>
         <Form.Item
           name="email"
           rules={[
-            { required: true, message: "Email Field is Required" },
-            { type: "email" },
+            { required: true, message: "Email is Required" },
+            { type: "email", message: "Please enter a valid email address" },
           ]}
           hasFeedback
-          className="text-lg"
         >
           <Input
-            name="email"
             type="email"
             placeholder="Enter Email"
-            style={{ background: "white" }}
-            onChange={(e) =>
-              setUserDetails({ ...userDetails, email: e.target.value })
-            }
-            className="h-12 text-lg border-2 border-green-500"
+            className="h-12 px-3 text-base border rounded border-green-500 focus:border-green-500 focus:ring-1 focus:ring-green-500"
           />
         </Form.Item>
         <Form.Item
           name="occupation"
-          rules={[{ required: true, message: "Occupation Field is Required" }]}
+          rules={[{ required: true, message: "Occupation is Required" }]}
           hasFeedback
-          className="text-lg"
         >
           <Input
-            name="occupation"
             type="text"
-            placeholder="Enter Title/Position"
-            style={{ background: "white" }}
-            onChange={(e) =>
-              setUserDetails({ ...userDetails, occupation: e.target.value })
-            }
-            className="h-12 text-lg border-2 border-green-500"
+            placeholder="E.g: CEO, Client, Project Manager"
+            className="h-12 px-3 text-base border rounded border-green-500 focus:border-green-500 focus:ring-1 focus:ring-green-500"
+          />
+        </Form.Item>
+        <Form.Item
+          name="rate"
+          rules={[{ required: true, message: "Please rate the service!" }]}
+        >
+          <Select
+            style={{ height: 45, fontSize: 16 }}
+            className="w-full !border-green-500 !border !text-base !rounded focus:!border-green-500 focus:!ring-1 focus:!ring-green-500"
+            placeholder="Select a Rating"
+            options={[
+              { value: "1 - Very Poor", label: "1 - Very Poor" },
+              { value: "2 - Poor", label: "2 - Poor" },
+              { value: "3 - Average", label: "3 - Average" },
+              { value: "4 - Good", label: "4 - Good" },
+              { value: "5 - Excellent", label: "5 - Excellent" },
+            ]}
           />
         </Form.Item>
         <Form.Item
           name="description"
-          rules={[{ required: true, message: "Description Field is Required" }]}
+          rules={[
+            { required: true, message: "Please provide a description" },
+            { min: 10, message: "Description must be at least 10 characters" },
+            { max: 500, message: "Description cannot exceed 500 characters" },
+          ]}
           hasFeedback
-          className="text-lg"
         >
           <TextArea
-            name="description"
-            placeholder="Say Something About Me"
-            style={{ background: "white" }}
-            onChange={(e) =>
-              setUserDetails({ ...userDetails, description: e.target.value })
-            }
-            className="text-lg border-2 border-green-500"
+            placeholder="Share your experience..."
+            rows={4}
+            className="px-3 py-2 text-base border rounded border-green-500 focus:border-green-500 focus:ring-1 focus:ring-green-500"
           />
         </Form.Item>
-        <Button
-          htmlType="submit"
-          disabled={loading}
-          type="primary"
-          className="h-12 text-lg font-semibold light-background"
-        >
-          {loading ? (
-            <span className="text-white">Submitting...</span>
-          ) : (
-            "Submit Review"
-          )}
-        </Button>
+
+        <Form.Item>
+          <Button
+            htmlType="submit"
+            disabled={loading}
+            type="primary"
+            className="w-full h-12 text-lg font-semibold light-background"
+          >
+            {loading ? "Submitting..." : "Submit Review"}
+          </Button>
+        </Form.Item>
       </Form>
     </div>
   );

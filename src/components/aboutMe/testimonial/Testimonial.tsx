@@ -11,9 +11,9 @@ import { motion } from "framer-motion";
 import { fadeIn } from "@/utils/motion";
 
 const Testimonial = () => {
-  const [openLeft, setOpenLeft] = useState(false);
-  const openDrawerLeft = () => setOpenLeft(true);
-  const closeDrawerLeft = () => setOpenLeft(false);
+  const [openReview, setOpenReview] = useState(false);
+  const openDrawerReview = () => setOpenReview(true);
+  const closeDrawerReview = () => setOpenReview(false);
 
   return (
     <div className="w-full my-8">
@@ -31,7 +31,7 @@ const Testimonial = () => {
             initial="hidden"
             whileInView={"show"}
             variants={fadeIn("left", 0.5)}
-            onClick={openDrawerLeft}
+            onClick={openDrawerReview}
             className="flex items-center gap-2 p-2 text-lg font-bold text-center border-2 rounded-lg light-background"
           >
             <span>Add Testimonial</span>
@@ -40,18 +40,18 @@ const Testimonial = () => {
           <Drawer
             closable={false}
             placement="left"
-            open={openLeft}
+            open={openReview}
             style={{ position: "relative", background: "#1C1919" }}
-            onClose={closeDrawerLeft}
+            onClose={closeDrawerReview}
             className="z-40 shadow-xl relative"
           >
             <button
-              onClick={closeDrawerLeft}
+              onClick={closeDrawerReview}
               className="right-4 z-50 cursor-pointer absolute"
             >
               <AiOutlineClose className="bg-glass p-1.5 w-8 h-8 rounded-full" />
             </button>
-            <ReviewForm />
+            <ReviewForm closeDrawerReview={closeDrawerReview} />
           </Drawer>
         </div>
       </div>

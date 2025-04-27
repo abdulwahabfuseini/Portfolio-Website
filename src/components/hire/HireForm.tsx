@@ -138,8 +138,6 @@ const HireForm = () => {
             className="h-11 px-3 border-gray-300 border text-base rounded focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
           />
         </Form.Item>
-
-        {/* Phone Number */}
         <Form.Item
           name="phoneNumber"
           label={
@@ -160,12 +158,11 @@ const HireForm = () => {
         >
           <Input
             type="tel"
-            placeholder="e.g. 024 123 4567"
+            prefix="+233"
+            placeholder="000 000 0000"
             className="h-11 px-3 border-gray-300 border text-base rounded focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
           />
         </Form.Item>
-
-        {/* Email Address */}
         <Form.Item
           label={
             <span className="text-base font-semibold text-white">
@@ -186,8 +183,6 @@ const HireForm = () => {
             className="h-11 px-3 border-gray-300 border text-base rounded focus:border-blue-500 focus:ring-1 focus:ring-blue-500" // Improved styling
           />
         </Form.Item>
-
-        {/* Company Name (Optional) */}
         <Form.Item
           label={
             <span className="text-base font-semibold text-white">
@@ -206,8 +201,6 @@ const HireForm = () => {
             className="h-11 px-3 border-gray-300 border text-base rounded focus:border-blue-500 focus:ring-1 focus:ring-blue-500" // Improved styling
           />
         </Form.Item>
-
-        {/* Company Address (Optional) */}
         <Form.Item
           label={
             <span className="text-base font-semibold text-white">
@@ -229,8 +222,6 @@ const HireForm = () => {
             className="h-11 px-3 border-gray-300 border text-base rounded focus:border-blue-500 focus:ring-1 focus:ring-blue-500" // Improved styling
           />
         </Form.Item>
-
-        {/* Budget */}
         <Form.Item
           label={
             <span className="text-base font-semibold text-white">Budget</span>
@@ -263,8 +254,6 @@ const HireForm = () => {
             ]}
           />
         </Form.Item>
-
-        {/* Details */}
         <Form.Item
           name="detail"
           label={
@@ -285,9 +274,7 @@ const HireForm = () => {
             className="px-3 py-2 border-gray-300 border text-base rounded focus:border-blue-500 focus:ring-1 focus:ring-blue-500" // Improved styling
           />
         </Form.Item>
-
-        {/* Submit Button */}
-        <Form.Item className="md:col-span-2 mt-4">
+        <Form.Item className="mt-4">
           {" "}
           <Button
             htmlType="submit"
