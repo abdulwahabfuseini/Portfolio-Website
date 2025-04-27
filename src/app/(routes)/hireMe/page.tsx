@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   
 const HireMe = () => {
   return (
-    <div className="grid w-full h-full px-4 py-10 mx-auto sm:px-6 md:py-16 max-w-7xl">
+    <div className="grid w-full h-full px-4 py-10 mx-auto sm:px-6 md:py-10 max-w-7xl">
       <Hire />
      </div>
   )

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="grid w-full h-full px-3 pt-8 pb-16 mx-auto sm:px-5 max-w-7xl overflow-x-hidden">
+    <div className="grid w-full h-full px-3 pt-3 pb-16 mx-auto sm:px-5 max-w-7xl overflow-x-hidden">
       <Hero />
       <AboutMe />
       <Choose />

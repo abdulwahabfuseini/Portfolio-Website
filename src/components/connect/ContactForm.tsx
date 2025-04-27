@@ -59,8 +59,8 @@ const ContactForm = () => {
         whileInView={"show"}
         variants={fadeIn("up", 0.4)}
       >
-        <h1 className="pb-4 text-2xl text-center sm:text-3xl capitalize">
-          Write me your project
+        <h1 className="pb-4 text-2xl text-center capitalize">
+         Leave a message for me
         </h1>
         <Form onFinish={handleSubmit} form={form}>
           <Form.Item
@@ -135,7 +135,7 @@ const ContactForm = () => {
             ]}
           >
             <TextArea
-              placeholder="Write Your Project"
+              placeholder="Leave a message for me"
               name="message"
               onChange={(e) =>
                 setContact({ ...contact, message: e.target.value })
@@ -149,7 +149,7 @@ const ContactForm = () => {
             type="primary"
             className="w-full h-12 my-4 text-xl cursor-pointer light-background"
           >
-            {loading ? "Sending..." : "Send Project"}
+            {loading ? "Sending..." : "Send Message"}
           </Button>
         </Form>
       </motion.div>

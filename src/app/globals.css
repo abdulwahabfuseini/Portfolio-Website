@@ -152,3 +152,20 @@
     background-position: 800px 0;
   }
 }
+
+
+.custom-rate .ant-rate-star-zero svg {
+  stroke: orange !important;
+  stroke-width: 20px !important;
+  fill: transparent !important;
+}
+
+.custom-rate .ant-rate-star-full svg {
+  fill: orange !important;
+  stroke: none !important;
+}
+
+.custom-rate .ant-rate-star:hover svg {
+  stroke: orange !important;
+  stroke-width: 20px !important;
+}

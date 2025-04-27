@@ -35,7 +35,7 @@ const AboutMe = () => {
   }, [filter]);
 
   return (
-    <div className="pt-16 md:pt-28 pb-10">
+    <div className="pt-10 md:pt-16 pb-10">
       <HeadTitle title="Biography" text="About Me" />
       <motion.div
         initial="hidden"

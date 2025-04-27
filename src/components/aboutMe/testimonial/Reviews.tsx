@@ -34,7 +34,7 @@ const Reviews = () => {
   const [prevEl, setPrevEl] = useState<HTMLButtonElement | null>(null);
 
   return (
-    <div className="py-10">
+    <div className="pt-4">
       {" "}
       <div className="flex items-center justify-between pr-4 md:pr-10 mb-6">
         {" "}
@@ -70,16 +70,15 @@ const Reviews = () => {
           <Swiper
             navigation={{ nextEl, prevEl }}
             modules={[Autoplay, Navigation]}
-            spaceBetween={10}
             loop={true}
             speed={1500}
             autoplay={{ delay: 7000, disableOnInteraction: false }}
             breakpoints={{
-              0: { slidesPerView: 1.1, spaceBetween: 15 },
-              640: { slidesPerView: 1.5, spaceBetween: 20 },
-              768: { slidesPerView: 2.2, spaceBetween: 20 },
-              1024: { slidesPerView: 2.8, spaceBetween: 25 },
-              1280: { slidesPerView: 3.5, spaceBetween: 30 },
+              0: { slidesPerView: 1.1, spaceBetween: 7 },
+              640: { slidesPerView: 1.5, spaceBetween: 8 },
+              768: { slidesPerView: 2.2, spaceBetween: 8 },
+              1024: { slidesPerView: 2.8, spaceBetween: 8 },
+              1280: { slidesPerView: 3.5, spaceBetween: 10 },
             }}
             className="mt-4 mb-14"
           >
@@ -109,7 +108,7 @@ const Reviews = () => {
                       value={getRatingValue(review.rate)}
                       allowHalf
                       disabled
-                      className="text-lg text-yellow-500"
+                      className="custom-rate text-lg text-yellow-500"
                     />
                   </div>
                 </div>

@@ -34,19 +34,19 @@ const MobileNav = () => {
           closable={false}
           placement="bottom"
           open={openNav}
-          height={280}
+          height={"auto"}
           onClose={closeDrawer}
           className="z-50 transition-all ease-in rounded-t-xl text-black"
         >
           {navigate.map((navLink) => (
             <li
               key={navLink.id}
-              className="font-semibold cursor-pointer list-none -m-4 py-2"
+              className="font-semibold cursor-pointer list-none -m-4 pt-2"
             >
               <Link
                 href={navLink.path}
                 onClick={() => setOpenNav(false)}
-                className="flex items-center justify-between w-full px-4 border-b py-3 text-lg uppercase sm:text-xl"
+                className="flex items-center justify-between w-full px-4 border-b py-4 text-lg uppercase sm:text-xl"
               >
                 <span className=" hover:text-blue-600 font-mono">{navLink.display}</span>{" "}
                 <span>

@@ -11,7 +11,7 @@ const Background = () => {
             Download CV
           </a>
         </button>
-        <Button url="/contact" text="Hire Me" />
+        <Button url="/hireMe" text="Hire Me" />
       </div>
     </div>
   );

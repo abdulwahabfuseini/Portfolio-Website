@@ -51,11 +51,14 @@ const Hero = () => {
             forefront, ensuring seamless navigation and intuitive interactions
           </p>
           <div className="flex items-center gap-4">
-            <Button url="/contact" text="Hire Me" />
-            <Button url="/about" text="About Me" />
+            <Button url="/hireMe" text="Hire Me" />
           </div>
         </motion.div>
-        <motion.div initial="hidden" whileInView={"show"}  variants={zoomIn(0.6)}>
+        <motion.div
+          initial="hidden"
+          whileInView={"show"}
+          variants={zoomIn(0.6)}
+        >
           <Image
             src="/images/front2.gif"
             alt=""
@@ -67,7 +70,11 @@ const Hero = () => {
           />
         </motion.div>
       </div>
-      <motion.div initial="hidden" whileInView={"show"}  variants={fadeIn("up", 0.6)}>
+      <motion.div
+        initial="hidden"
+        whileInView={"show"}
+        variants={fadeIn("up", 0.6)}
+      >
         <Social />
       </motion.div>
     </div>

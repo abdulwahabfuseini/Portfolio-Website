@@ -6,8 +6,12 @@ import Social from "../home/Social";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/utils/motion";
 import { ContactInfo } from "@/assets/Data";
+import { VscChevronRight } from "react-icons/vsc";
+import { useRouter } from "next/navigation";
 
 const Address = () => {
+  const router = useRouter()
+
   return (
     <div className="w-full py-3 shadow-xl md:py-6">
       <motion.div
@@ -52,6 +56,10 @@ const Address = () => {
         </div>
       </motion.div>
       <Social />
+      <button onClick={() => router.push("/hireMe")} type="button" className="px-3 flex items-center justify-center gap-1 py-1 mt-8 text-lg font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700">
+        Hire Me 
+        <VscChevronRight className="text-2xl font-semibold" />
+      </button>
     </div>
   );
 };

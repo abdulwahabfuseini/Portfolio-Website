@@ -25,7 +25,6 @@ const HireForm = () => {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (values: FormData) => {
-    // Use FormData type directly
     setLoading(true);
     try {
       const formattedPhoneNumber = formatPhoneNumber(values.phoneNumber);
@@ -114,7 +113,7 @@ const HireForm = () => {
       <Form
         onFinish={handleSubmit}
         form={form}
-        className="pt-6 pb-4 lg:py-6 grid grid-cols-1 md:grid-cols-2 gap-x-4"
+        className="pt-6 pb-4 lg:py-10 grid grid-cols-1 md:grid-cols-2 gap-x-4"
         layout="vertical"
       >
         <Form.Item
