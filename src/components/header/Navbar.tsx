@@ -24,7 +24,7 @@ const Navbar = () => {
         className={`${
           sticky
             ? "fixed top-0 py-5 shadow-lg shadow-indigo-500/20  z-50 w-full text-white bg-black md:px-[8vw]"
-            : "my-8 mx-3 sm:mx-16 max-w-4xl lg:mx-auto transition-all ease-in bg-glass rounded-xl  py-3 sm:py-3"
+            : "my-8 mx-3 sm:mx-16 max-w-5xl lg:mx-auto transition-all ease-in bg-glass rounded-xl  py-3 sm:py-3"
         } flex items-center font-mono justify-between px-3 sm:px-6 shadow-xl`}
       >
         <Link href="/">

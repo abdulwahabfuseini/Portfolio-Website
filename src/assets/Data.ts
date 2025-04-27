@@ -125,10 +125,10 @@ export const skill = [
     icon: "cloud.png",
   },
 
-  // {
-  //   id: 15,
-  //   icon: "Aws.png",
-  // },
+  {
+    id: 15,
+    icon: "Aws.png",
+  },
   {
     id: 16,
     icon: "material-ui.png",

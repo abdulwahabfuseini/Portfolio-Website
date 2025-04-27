@@ -1,26 +1,24 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-// src/app/api/projects/route.ts
+
 
 import { NextRequest, NextResponse } from "next/server";
-import { IncomingForm, Files } from "formidable"; // For parsing form data
+import { IncomingForm, Files } from "formidable";
 import { Readable } from "stream";
 import type { IncomingMessage } from "http";
-import prisma from "@/libs/Prismadb"; // Assumes "@/libs/Prismadb" correctly initializes and exports the Prisma client instance
+import prisma from "@/libs/Prismadb"; 
 
-// --- Helper function to adapt NextRequest for Formidable ---
-// Formidable expects a Node.js IncomingMessage, so we create a compatible stream
 const toIncomingMessage = async (
   req: NextRequest
 ): Promise<IncomingMessage> => {
   const bodyBuffer = Buffer.from(await req.arrayBuffer());
   const stream = new Readable();
   stream.push(bodyBuffer);
-  stream.push(null); // Signal end of stream
+  stream.push(null); 
 
-  // Mimic Node.js IncomingMessage structure
+  
   return Object.assign(stream, {
-    headers: Object.fromEntries(req.headers), // Convert Next.js Headers to plain object
+    headers: Object.fromEntries(req.headers), 
     method: req.method,
     url: req.url,
   }) as IncomingMessage;
@@ -28,9 +26,9 @@ const toIncomingMessage = async (
 
 // --- CORS Configuration ---
 const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(",") || [
-  "http://localhost:3000", // Your local dev environment
-  "https://international-trade-properties.vercel.app", // Your production frontend
-  // Add any other origins that need access
+  "http://localhost:3000",
+  "https://portfolio-website-two-tau-94.vercel.app/", 
+ 
 ];
 
 // Helper function to add CORS headers to a response
@@ -65,13 +63,13 @@ async function parseFormData(
   req: NextRequest
 ): Promise<{ fields: Record<string, string[]>; files: Files<string> }> {
   const form = new IncomingForm({ multiples: true }); // Allow multiple files/fields with the same name
-  const nodeReq = await toIncomingMessage(req); // Adapt NextRequest
+  const nodeReq = await toIncomingMessage(req); 
 
   return new Promise((resolve, reject) => {
     form.parse(nodeReq, (err, fields, files) => {
       if (err) {
         console.error("Formidable Parsing Error:", err);
-        reject(new Error(`Form parsing failed: ${err.message}`)); // Reject with an Error object
+        reject(new Error(`Form parsing failed: ${err.message}`)); 
         return;
       }
 

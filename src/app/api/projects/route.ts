@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextRequest, NextResponse } from "next/server";
-import { IncomingForm, Files } from "formidable";
+import { IncomingForm, Files, File } from "formidable";
 import { Readable } from "stream";
 import type { IncomingMessage } from "http";
 import prisma from "@/libs/Prismadb";
@@ -9,20 +9,25 @@ import prisma from "@/libs/Prismadb";
 const toIncomingMessage = async (
   req: NextRequest
 ): Promise<IncomingMessage> => {
-  const bodyBuffer = Buffer.from(await req.arrayBuffer());
+  // Handle cases where the request body might be null or empty
+  const arrayBuffer = await req.arrayBuffer().catch(() => null);
+  const bodyBuffer = arrayBuffer ? Buffer.from(arrayBuffer) : Buffer.alloc(0);
+
   const stream = new Readable();
   stream.push(bodyBuffer);
-  stream.push(null);
+  stream.push(null); // Signal end of stream
 
   // Create a mock IncomingMessage compatible object
   return Object.assign(stream, {
-    headers: Object.fromEntries(req.headers), // Convert Headers object to plain object
+    headers: Object.fromEntries(req.headers),
     method: req.method,
     url: req.url,
+    // Add socket property required by some versions of formidable
+    socket: { remoteAddress: req.ip ?? "unknown" } as any,
   }) as IncomingMessage;
 };
 
-// Define allowed origins for CORS
+// Allowed origins for CORS
 const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(",") || [
   "http://localhost:3000",
   "https://international-trade-properties.vercel.app",
@@ -38,10 +43,15 @@ const setCorsHeaders = (response: NextResponse, origin: string | null) => {
     );
     response.headers.set(
       "Access-Control-Allow-Headers",
-      "Content-Type, Authorization" // Add other headers if needed
+      "Content-Type, Authorization"
     );
     response.headers.set("Access-Control-Allow-Credentials", "true");
+  } else if (!origin && process.env.NODE_ENV === "development") {
+    // Allow requests with no origin in development (e.g., server-side requests, tools)
+    response.headers.set("Access-Control-Allow-Origin", "*"); // Be cautious with "*" in production
   }
+  // Add Vary header to prevent caching issues with different origins
+  response.headers.set("Vary", "Origin");
 };
 
 // OPTIONS handler for CORS preflight requests
@@ -56,26 +66,37 @@ export async function OPTIONS(req: NextRequest) {
 async function parseFormData(
   req: NextRequest
 ): Promise<{ fields: Record<string, string[]>; files: Files<string> }> {
-  const form = new IncomingForm({ multiples: true });
+  // Initialize formidable - disable file uploads if not needed for this route
+  const form = new IncomingForm({
+    multiples: true,
+    keepExtensions: true,
+    maxFileSize: 0,
+  });
   const nodeReq = await toIncomingMessage(req);
 
   return new Promise((resolve, reject) => {
     form.parse(nodeReq, (err, fields, files) => {
       if (err) {
         console.error("Formidable Parsing Error:", err);
-        // It's often better to reject with an Error object
-        reject(new Error(`Form parsing failed: ${err.message}`));
+        // Provide a more specific error message
+        reject(
+          new Error(
+            `Form data parsing failed: ${err.message}. Check request Content-Type and format.`
+          )
+        );
         return;
       }
 
-      // Ensure all field values are string arrays
+      // Ensure all field values are string arrays for consistency
       const processedFields: Record<string, string[]> = {};
       for (const key in fields) {
+        // Use hasOwnProperty for safety
         if (Object.prototype.hasOwnProperty.call(fields, key)) {
           const value = fields[key];
-          processedFields[key] = Array.isArray(value)
-            ? value.map(String)
-            : [String(value)];
+          // Convert single values to array and ensure all elements are strings
+          processedFields[key] = (Array.isArray(value) ? value : [value]).map(
+            String
+          );
         }
       }
       resolve({ fields: processedFields, files });
@@ -83,38 +104,46 @@ async function parseFormData(
   });
 }
 
-// POST handler to create a new property/product entry
+// POST handler to create a new project entry
 export async function POST(req: NextRequest): Promise<NextResponse> {
-  console.log("API POST /api/properties called");
+  console.log(
+    `API POST /api/projects called from origin: ${req.headers.get("origin")}`
+  );
   const origin = req.headers.get("origin");
 
-  // Main try block for the entire request processing
   try {
-    const { fields, files } = await parseFormData(req);
+    const { fields } = await parseFormData(req); // files are ignored as per formidable config
 
-    // Extract fields - use nullish coalescing for safety
-    const fullName = fields.fullName?.[0] ?? "";
-    const email = fields.email?.[0] ?? "";
-    const phoneNumber = fields.phoneNumber?.[0] ?? "";
-    const budget = fields.budget?.[0] ?? "";
-    const companyName = fields.companyName?.[0] ?? "";
-    const companyAddress = fields.companyAddress?.[0] ?? "";
-    const detail = fields.detail?.[0] ?? "";
+    // Extract fields - use nullish coalescing for safety and trim whitespace
+    const fullName = fields.fullName?.[0]?.trim() ?? "";
+    const email = fields.email?.[0]?.trim() ?? "";
+    const phoneNumber = fields.phoneNumber?.[0]?.trim() ?? "";
+    const budget = fields.budget?.[0]?.trim() ?? "";
+    const companyName = fields.companyName?.[0]?.trim() ?? ""; // Optional
+    const companyAddress = fields.companyAddress?.[0]?.trim() ?? ""; // Optional
+    const detail = fields.detail?.[0]?.trim() ?? "";
 
-    // --- Validation ---
-    const requiredFields = {
+    console.log("Received fields:", {
       fullName,
       email,
       phoneNumber,
       budget,
+      companyName,
+      companyAddress,
       detail,
-    };
+    });
+
+    // --- Validation ---
+    const requiredFields = { fullName, email, phoneNumber, budget, detail };
     const missingFields = Object.entries(requiredFields)
-      .filter(([, value]) => !value) // Check for empty strings or undefined
+      .filter(([, value]) => !value)
       .map(([key]) => key);
 
     if (missingFields.length > 0) {
-      console.error("Validation Error - Missing fields:", missingFields);
+      console.error(
+        "Validation Error - Missing required fields:",
+        missingFields
+      );
       const response = NextResponse.json(
         { message: `Missing required fields: ${missingFields.join(", ")}.` },
         { status: 400 }
@@ -123,42 +152,62 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       return response;
     }
 
-    // *** CORRECTED BUDGET VALIDATION ***
+    // *** BUDGET VALIDATION ***
+
     const allowedBudgetValues = [
       "GH₵ 2,000.00 - GH₵ 5,000.00",
       "GH₵ 5,000.00 - GH₵ 10,000.00",
       "GH₵ 10,000.00 And Above",
     ];
     if (!allowedBudgetValues.includes(budget)) {
-      console.error("Validation Error - Invalid budget:", budget);
+      // Log the *actual* received value for debugging
+      console.error(
+        `Validation Error - Invalid budget value received: '${budget}'`
+      );
       const response = NextResponse.json(
-        { message: "Invalid budget value provided." },
+        {
+          message: `Invalid budget value provided. Received: '${budget}'. Expected one of: ${allowedBudgetValues.join(
+            ", "
+          )}`,
+        },
         { status: 400 }
       );
       setCorsHeaders(response, origin);
       return response;
     }
 
+    // Additional validation (example: email format - basic)
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      console.error("Validation Error - Invalid email format:", email);
+      const response = NextResponse.json(
+        { message: "Invalid email format provided." },
+        { status: 400 }
+      );
+      setCorsHeaders(response, origin);
+      return response;
+    }
+
+    // --- Database Interaction ---
     try {
-      const product = await prisma.projects.create({
+      const newProject = await prisma.projects.create({
         data: {
           fullName,
           email,
-          budget,
-          companyName,
-          companyAddress,
-          detail,
           phoneNumber,
+          budget,
+          companyName: companyName || null,
+          companyAddress: companyAddress || null,
+          detail,
         },
       });
 
-      console.log("Project created successfully in DB:", product.id);
+      console.log("Project created successfully in DB:", newProject.id);
 
       const response = NextResponse.json(
         {
           success: true,
-          data: product,
-          message: "Project Created Successfully",
+          data: newProject,
+          message: "Project Submitted Successfully",
         },
         { status: 201 }
       );
@@ -166,13 +215,11 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       return response;
     } catch (prismaError: any) {
       console.error("Prisma Database Error:", prismaError);
-      let errorMessage = "Database error occurred while creating the product.";
+      let errorMessage = "Database error occurred while saving the project.";
       let statusCode = 500;
 
-      // Check for specific Prisma errors
       if (prismaError.code === "P2002" && prismaError.meta?.target) {
-        // Unique constraint violation
-        errorMessage = `Database Error: An entry with this information might already exist (duplicate field: ${prismaError.meta.target.join(
+        errorMessage = `Database Error: A project with this information might already exist (field: ${prismaError.meta.target.join(
           ", "
         )}).`;
         statusCode = 409;
@@ -191,15 +238,19 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       return response;
     }
   } catch (error: any) {
+    // Catch errors from parseFormData or other unexpected issues
     console.error("Overall POST Request Error:", error);
-    // Distinguish between parsing errors and others if needed
-    const message = error.message.startsWith("Form parsing failed:")
-      ? `Failed to process request data: ${error.message}`
-      : "An internal server error occurred.";
+    const message = error.message.includes("Form data parsing failed")
+      ? error.message // Use specific parsing error message
+      : "An internal server error occurred processing your request.";
+
+    const statusCode = error.message.includes("Form data parsing failed")
+      ? 400
+      : 500;
 
     const response = NextResponse.json(
       { message: message, error: error.message || "Unknown error" },
-      { status: error.message.startsWith("Form parsing failed:") ? 400 : 500 }
+      { status: statusCode }
     );
     setCorsHeaders(response, origin);
     return response;
@@ -210,7 +261,9 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 export const GET = async (req: NextRequest) => {
   const origin = req.headers.get("origin");
   try {
-    const allProjects = await prisma.projects.findMany();
+    const allProjects = await prisma.projects.findMany({
+      orderBy: { createdAt: "desc" },
+    });
     const response = NextResponse.json(
       {
         success: true,
@@ -222,7 +275,6 @@ export const GET = async (req: NextRequest) => {
     setCorsHeaders(response, origin);
     return response;
   } catch (error: any) {
-    // Added type annotation
     console.error("GET Projects Error:", error);
     const response = NextResponse.json(
       { message: "Database Error Retrieving Projects", error: error.message },
@@ -233,25 +285,25 @@ export const GET = async (req: NextRequest) => {
   }
 };
 
-// DELETE
+// DELETE handler to remove all projects
 export const DELETE = async (req: NextRequest) => {
   const origin = req.headers.get("origin");
+
   try {
     console.warn("Executing DELETE request to remove all projects!");
-    const { count } = await prisma.projects.deleteMany({}); // Delete all records
+    const { count } = await prisma.projects.deleteMany({});
     console.log(`Deleted ${count} projects.`);
     const response = NextResponse.json(
       {
         success: true,
         data: { deletedCount: count },
-        message: `${count} Projects Deleted Successfully`,
+        message: `${count} Project(s) Deleted Successfully`,
       },
       { status: 200 }
     );
     setCorsHeaders(response, origin);
     return response;
   } catch (error: any) {
-    // Added type annotation
     console.error("DELETE Projects Error:", error);
     const response = NextResponse.json(
       { message: "Database Error Deleting Projects", error: error.message },
