@@ -210,13 +210,11 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 export const GET = async (req: NextRequest) => {
   const origin = req.headers.get("origin");
   try {
-    const allProducts = await prisma.projects.findMany({
-      orderBy: { createdAt: "desc" }, // Order by creation date, newest first
-    });
+    const allProjects = await prisma.projects.findMany();
     const response = NextResponse.json(
       {
         success: true,
-        data: allProducts,
+        data: allProjects,
         message: "Projects Retrieved Successfully",
       },
       { status: 200 }

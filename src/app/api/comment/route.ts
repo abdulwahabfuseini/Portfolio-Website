@@ -1,242 +1,307 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
+// src/app/api/projects/route.ts
+
 import { NextRequest, NextResponse } from "next/server";
-import { IncomingForm, Files } from "formidable";
+import { IncomingForm, Files } from "formidable"; // For parsing form data
 import { Readable } from "stream";
 import type { IncomingMessage } from "http";
-import prisma from "@/libs/Prismadb";
+import prisma from "@/libs/Prismadb"; // Assumes "@/libs/Prismadb" correctly initializes and exports the Prisma client instance
 
-// Helper function to convert NextRequest to Node.js IncomingMessage
+// --- Helper function to adapt NextRequest for Formidable ---
+// Formidable expects a Node.js IncomingMessage, so we create a compatible stream
 const toIncomingMessage = async (
   req: NextRequest
 ): Promise<IncomingMessage> => {
   const bodyBuffer = Buffer.from(await req.arrayBuffer());
   const stream = new Readable();
   stream.push(bodyBuffer);
-  stream.push(null);
+  stream.push(null); // Signal end of stream
 
-  // Create a mock IncomingMessage compatible object
+  // Mimic Node.js IncomingMessage structure
   return Object.assign(stream, {
-    headers: Object.fromEntries(req.headers), // Convert Headers object to plain object
+    headers: Object.fromEntries(req.headers), // Convert Next.js Headers to plain object
     method: req.method,
     url: req.url,
   }) as IncomingMessage;
 };
 
-// Define allowed origins for CORS
+// --- CORS Configuration ---
 const allowedOrigins = process.env.ALLOWED_ORIGINS?.split(",") || [
-  "http://localhost:3000",
-  "https://international-trade-properties.vercel.app",
+  "http://localhost:3000", // Your local dev environment
+  "https://international-trade-properties.vercel.app", // Your production frontend
+  // Add any other origins that need access
 ];
 
-// Helper function to set CORS headers
+// Helper function to add CORS headers to a response
 const setCorsHeaders = (response: NextResponse, origin: string | null) => {
+  // Only set CORS headers if the origin is in the allowed list
   if (origin && allowedOrigins.includes(origin)) {
     response.headers.set("Access-Control-Allow-Origin", origin);
     response.headers.set(
       "Access-Control-Allow-Methods",
-      "GET, POST, PUT, DELETE, OPTIONS"
+      "GET, POST, PUT, DELETE, OPTIONS" // Allowed methods
     );
     response.headers.set(
       "Access-Control-Allow-Headers",
-      "Content-Type, Authorization" // Add other headers if needed
+      "Content-Type, Authorization" // Allowed headers
     );
-    response.headers.set("Access-Control-Allow-Credentials", "true");
+    response.headers.set("Access-Control-Allow-Credentials", "true"); // If you need to handle credentials (cookies, auth headers)
   }
 };
 
-// OPTIONS handler for CORS preflight requests
+// --- OPTIONS Request Handler (for CORS preflight) ---
 export async function OPTIONS(req: NextRequest) {
   const origin = req.headers.get("origin");
+  // Respond with 204 No Content for OPTIONS requests
   const response = new NextResponse(null, { status: 204 });
+  // Set CORS headers based on the request origin
   setCorsHeaders(response, origin);
   return response;
 }
 
-// Helper function to parse form data using formidable
+// --- Helper function to parse FormData using Formidable ---
 async function parseFormData(
   req: NextRequest
 ): Promise<{ fields: Record<string, string[]>; files: Files<string> }> {
-  const form = new IncomingForm({ multiples: true });
-  const nodeReq = await toIncomingMessage(req);
+  const form = new IncomingForm({ multiples: true }); // Allow multiple files/fields with the same name
+  const nodeReq = await toIncomingMessage(req); // Adapt NextRequest
 
   return new Promise((resolve, reject) => {
     form.parse(nodeReq, (err, fields, files) => {
       if (err) {
         console.error("Formidable Parsing Error:", err);
-        // It's often better to reject with an Error object
-        reject(new Error(`Form parsing failed: ${err.message}`));
+        reject(new Error(`Form parsing failed: ${err.message}`)); // Reject with an Error object
         return;
       }
 
-      // Ensure all field values are string arrays
+      // Ensure all field values are consistently string arrays
       const processedFields: Record<string, string[]> = {};
       for (const key in fields) {
+        // Check own properties to avoid iterating prototype chain
         if (Object.prototype.hasOwnProperty.call(fields, key)) {
           const value = fields[key];
+          // Convert single values to arrays and ensure all array elements are strings
           processedFields[key] = Array.isArray(value)
             ? value.map(String)
             : [String(value)];
         }
       }
-      resolve({ fields: processedFields, files });
+      resolve({ fields: processedFields, files }); // Resolve with processed fields and files
     });
   });
 }
 
-// POST handler to create a new property/product entry
+// --- POST Request Handler (Create a new project entry) ---
 export async function POST(req: NextRequest): Promise<NextResponse> {
-  console.log("API POST /api/properties called");
-  const origin = req.headers.get("origin");
+  console.log("API POST /api/projects called");
+  const origin = req.headers.get("origin"); // Get request origin for CORS
 
-  // Main try block for the entire request processing
+  // Main try block for request processing (parsing, validation, DB operation)
   try {
-    const { fields, files } = await parseFormData(req);
+    // Parse the incoming form data
+    const { fields, files } = await parseFormData(req); // 'files' object is available if handling uploads
 
-    // Extract fields - use nullish coalescing for safety
+    // Extract required fields from parsed data (using nullish coalescing for safety)
     const fullName = fields.fullName?.[0] ?? "";
     const email = fields.email?.[0] ?? "";
-    const occupation = fields.occupation?.[0] ?? "";
-    const description = fields.description?.[0] ?? "";
+    const phoneNumber = fields.phoneNumber?.[0] ?? "";
+    const budget = fields.budget?.[0] ?? "";
+    const companyName = fields.companyName?.[0] ?? "";
+    const companyAddress = fields.companyAddress?.[0] ?? ""; // Corrected typo from conpanyAddress
+    const detail = fields.detail?.[0] ?? "";
 
-    // --- Validation ---
+    // --- Server-Side Validation ---
     const requiredFields = {
       fullName,
       email,
-      occupation,
-      description,
+      phoneNumber,
+      budget,
+      detail,
     };
+    // Find any required fields that are empty or missing
     const missingFields = Object.entries(requiredFields)
-      .filter(([, value]) => !value) // Check for empty strings or undefined
+      .filter(([, value]) => !value)
       .map(([key]) => key);
 
+    // If validation fails, return a 400 Bad Request response
     if (missingFields.length > 0) {
       console.error("Validation Error - Missing fields:", missingFields);
       const response = NextResponse.json(
         { message: `Missing required fields: ${missingFields.join(", ")}.` },
         { status: 400 }
       );
-      setCorsHeaders(response, origin);
+      setCorsHeaders(response, origin); // Apply CORS headers
       return response;
     }
 
+    // Specific validation for the 'budget' field
+    const allowedBudgetValues = [
+      "GH₵ 2,000.00 - GH₵ 5,000.00",
+      "GH₵ 5,000.00 - GH₵ 10,000.00",
+      "GH₵ 10,000.00 And Above",
+    ];
+    if (!allowedBudgetValues.includes(budget)) {
+      console.error("Validation Error - Invalid budget:", budget);
+      const response = NextResponse.json(
+        { message: "Invalid budget value provided." },
+        { status: 400 }
+      );
+      setCorsHeaders(response, origin); // Apply CORS headers
+      return response;
+    }
+
+    // --- Database Operation ---
+    // Inner try block specifically for the Prisma database call
     try {
-      const product = await prisma.comments.create({
+      // Create a new record in the 'projects' table (ensure model name matches schema.prisma)
+      const newProject = await prisma.projects.create({
         data: {
           fullName,
           email,
-          description,
-          occupation,
+          budget,
+          companyName,
+          companyAddress, // Use corrected field name
+          detail,
+          phoneNumber,
+          // Prisma automatically handles 'id' and 'createdAt'/'updatedAt' if defined in schema
         },
       });
 
-      console.log("Product created successfully in DB:", product.id);
+      console.log("Project created successfully in DB:", newProject.id);
 
+      // Return a success response (201 Created)
       const response = NextResponse.json(
         {
           success: true,
-          data: product,
-          message: "Product Created Successfully",
+          data: newProject,
+          message: "Project Created Successfully",
         },
         { status: 201 }
       );
-      setCorsHeaders(response, origin);
+      setCorsHeaders(response, origin); // Apply CORS headers
       return response;
-    } catch (prismaError: any) {
-      console.error("Prisma Database Error:", prismaError);
-      let errorMessage = "Database error occurred while creating the product.";
-      let statusCode = 500;
 
-      // Check for specific Prisma errors
+    } catch (prismaError: any) {
+      // Handle potential database errors (e.g., unique constraint violation)
+      console.error("Prisma Database Error:", prismaError);
+      let errorMessage = "Database error occurred while creating the project.";
+      let statusCode = 500; // Default to Internal Server Error
+
+      // Check for specific Prisma error codes
       if (prismaError.code === "P2002" && prismaError.meta?.target) {
-        // Unique constraint violation
+        // Unique constraint failed
         errorMessage = `Database Error: An entry with this information might already exist (duplicate field: ${prismaError.meta.target.join(
           ", "
         )}).`;
-        statusCode = 409;
+        statusCode = 409; // Conflict status code
       } else if (prismaError.message) {
+        // Use Prisma's error message if available
         errorMessage = `Database Error: ${prismaError.message}`;
       }
 
+      // Return an error response
       const response = NextResponse.json(
         {
           message: errorMessage,
-          error: prismaError.code || "Unknown DB Error",
+          error: prismaError.code || "Unknown DB Error", // Include error code if available
         },
         { status: statusCode }
       );
-      setCorsHeaders(response, origin);
+      setCorsHeaders(response, origin); // Apply CORS headers
       return response;
     }
+  // Catch block for errors during parsing or validation (outside the DB operation)
   } catch (error: any) {
     console.error("Overall POST Request Error:", error);
-    // Distinguish between parsing errors and others if needed
+    // Determine if the error was during form parsing
     const message = error.message.startsWith("Form parsing failed:")
       ? `Failed to process request data: ${error.message}`
       : "An internal server error occurred.";
+    // Use 400 for parsing errors, 500 for others
+    const status = error.message.startsWith("Form parsing failed:") ? 400 : 500;
 
+    // Return a generic server error response
     const response = NextResponse.json(
       { message: message, error: error.message || "Unknown error" },
-      { status: error.message.startsWith("Form parsing failed:") ? 400 : 500 }
+      { status: status }
     );
-    setCorsHeaders(response, origin);
+    setCorsHeaders(response, origin); // Apply CORS headers
     return response;
   }
 }
 
-// GET handler to retrieve all comments
+// --- GET Request Handler (Retrieve all projects) ---
 export const GET = async (req: NextRequest) => {
-  const origin = req.headers.get("origin");
+  const origin = req.headers.get("origin"); // Get request origin for CORS
+
+  // NOTE: The connection error happens here if the DB connection fails.
+  // The code below is correct, but depends on a working DB connection.
   try {
-    const allProducts = await prisma.comments.findMany({
-      orderBy: { createdAt: "desc" }, // Order by creation date, newest first
+    // Fetch all records from the 'projects' table
+    // Consider adding 'orderBy: { createdAt: "desc" }' to get newest first
+    const allProjects = await prisma.projects.findMany({
+       orderBy: { createdAt: "desc" }, // Optional: uncomment to order by creation date
     });
+
+    // Return a success response (200 OK)
     const response = NextResponse.json(
       {
         success: true,
-        data: allProducts,
-        message: "Comments Retrieved Successfully",
+        data: allProjects,
+        message: "Projects Retrieved Successfully",
       },
       { status: 200 }
     );
-    setCorsHeaders(response, origin);
+    setCorsHeaders(response, origin); // Apply CORS headers
     return response;
+
   } catch (error: any) {
-    // Added type annotation
-    console.error("GET Comments Error:", error);
+    // Handle errors during database retrieval (including the connection error)
+    console.error("GET Projects Error:", error);
+    // Return an error response
     const response = NextResponse.json(
-      { message: "Database Error Retrieving Comments", error: error.message },
+      // Include the actual error message for debugging (might want to hide in production)
+      { message: "Database Error Retrieving Projects", error: error.message },
       { status: 500 }
     );
-    setCorsHeaders(response, origin);
+    setCorsHeaders(response, origin); // Apply CORS headers
     return response;
   }
 };
 
-// DELETE
+// --- DELETE Request Handler (Remove all projects - USE WITH CAUTION!) ---
 export const DELETE = async (req: NextRequest) => {
-  const origin = req.headers.get("origin");
+  const origin = req.headers.get("origin"); // Get request origin for CORS
+  // Add Authentication/Authorization checks here before allowing deletion!
+
   try {
-    console.warn("Executing DELETE request to remove all comments!");
-    const { count } = await prisma.comments.deleteMany({}); // Delete all records
-    console.log(`Deleted ${count} comments.`);
+    console.warn("Executing DELETE request to remove all projects!");
+    // Delete all records from the 'projects' table
+    const { count } = await prisma.projects.deleteMany({});
+    console.log(`Deleted ${count} projects.`);
+
+    // Return a success response (200 OK)
     const response = NextResponse.json(
       {
         success: true,
-        data: { deletedCount: count },
-        message: `${count} Comments Deleted Successfully`,
+        data: { deletedCount: count }, // Report how many were deleted
+        message: `${count} Projects Deleted Successfully`,
       },
       { status: 200 }
     );
-    setCorsHeaders(response, origin);
+    setCorsHeaders(response, origin); // Apply CORS headers
     return response;
+
   } catch (error: any) {
-    // Added type annotation
-    console.error("DELETE Comments Error:", error);
+    // Handle errors during deletion
+    console.error("DELETE Projects Error:", error);
+    // Return an error response
     const response = NextResponse.json(
-      { message: "Database Error Deleting Comments", error: error.message },
+      { message: "Database Error Deleting Projects", error: error.message },
       { status: 500 }
     );
-    setCorsHeaders(response, origin);
+    setCorsHeaders(response, origin); // Apply CORS headers
     return response;
   }
 };

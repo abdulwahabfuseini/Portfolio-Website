@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
 
 if (!process.env.DATABASE_URL) {
   throw new Error("Please add your DATABASE_URL to .env.local");
@@ -9,13 +9,11 @@ const DATABASE_URL: string = process.env.DATABASE_URL;
 
 let prisma: PrismaClient;
 
-
 if (process.env.NODE_ENV === "production") {
   prisma = new PrismaClient();
 } else {
-  
   const globalWithPrisma = global as typeof globalThis & {
-    prisma?: PrismaClient; 
+    prisma?: PrismaClient;
   };
 
   if (!globalWithPrisma.prisma) {
@@ -24,7 +22,6 @@ if (process.env.NODE_ENV === "production") {
 
   prisma = globalWithPrisma.prisma;
 }
-
 
 const globalWithMongoose = global as typeof globalThis & {
   mongoose: {
@@ -36,10 +33,8 @@ if (!globalWithMongoose.mongoose) {
   globalWithMongoose.mongoose = { conn: null, promise: null };
 }
 
-
 const cached = globalWithMongoose.mongoose;
 let isConnected = false;
-
 
 export const connectMongoDB = async () => {
   if (isConnected) {
@@ -67,7 +62,6 @@ export const connectMongoDB = async () => {
 
     isConnected = true;
     console.log("Connected to MongoDB");
-
   } catch (error) {
     console.error("Connection Failed", error);
     throw new Error("Failed to connect to MongoDB");

@@ -20,7 +20,7 @@ model Projects {
   email             String
   companyName       String?
   companyAddress    String? 
-   budget           String
+  budget            String
   detail            String 
   createdAt         DateTime @default(now())
   updatedAt         DateTime @updatedAt
