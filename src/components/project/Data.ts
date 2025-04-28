@@ -145,6 +145,22 @@ export const PortFolio = [
       { tool: "TailwindCSS" },
     ],
   },
+  // {
+  //   id: 10,
+  //   imgUrl: "pro5.png",
+  //   projectName: "International Trade Properties",
+  //   code: "https://github.com/abdulwahabfuseini/international-trade-properties",
+  //   link: "international-trade-properties.vercel.app",
+  //   connect: "link.png",
+  //   desc: "E-commerce Website made with",
+  //   tools: [
+  //     { tool: "React.js" },
+  //     { tool: "React Redux" },
+  //     { tool: "JavaScript" },
+  //     { tool: "Firebase" },
+  //     { tool: "TailwindCSS" },
+  //   ],
+  // },
 ];
 
 

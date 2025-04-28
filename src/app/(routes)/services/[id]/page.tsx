@@ -36,7 +36,7 @@ const SingleService = ({ params }: any) => {
             src={`/SVG/${data?.icon}`}
             alt="service"
             width={800}
-            height={30}
+            height={800}
             className=" object-contain h-64 sm:h-96"
           />
         </motion.div>
@@ -46,7 +46,7 @@ const SingleService = ({ params }: any) => {
           variants={fadeIn("right", 0.5)}
           className="text-lg sm:text-xl lg:col-span-2 lg:order-2 break-word order-1"
         >
-          <h1 className="pb-3 text-2xl uppercase  font-semibold sm:text-4xl">
+          <h1 className="pb-3 text-2xl uppercase font-semibold sm:text-3xl">
             {data?.title}
           </h1>
           <p>{data?.desc1}</p>

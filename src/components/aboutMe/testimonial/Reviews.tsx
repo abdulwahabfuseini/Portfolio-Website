@@ -93,12 +93,12 @@ const Reviews = () => {
                   <h2 className="text-xl font-bold text-white capitalize">
                     {review.fullName}
                   </h2>
-                  <h3 className="text-base font-medium text-green-700 capitalize">
+                  <h3 className="text-base font-semibold text-green-700 uppercase">
                     {review.occupation}
                   </h3>
                   <Typography.Paragraph
                     className="text-sm text-white mt-1 mb-2 min-h-[60px]"
-                    ellipsis={{ rows: 3, expandable: false, symbol: "..." }}
+                    ellipsis={{ rows: 3, expandable: true, symbol: "Read More" }}
                   >
                     {review.description}
                   </Typography.Paragraph>

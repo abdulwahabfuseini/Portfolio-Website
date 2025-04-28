@@ -119,7 +119,7 @@ const ReviewForm = ({ closeDrawerReview }: any) => {
         >
           <TextArea
             placeholder="Share your experience..."
-            rows={4}
+            rows={3}
             className="px-3 py-2 text-base border rounded border-green-500 focus:border-green-500 focus:ring-1 focus:ring-green-500"
           />
         </Form.Item>
@@ -129,7 +129,7 @@ const ReviewForm = ({ closeDrawerReview }: any) => {
             htmlType="submit"
             disabled={loading}
             type="primary"
-            className="w-full h-12 text-lg font-semibold light-background"
+            className="w-full h-12 text-lg font-semibold light-background text-white"
           >
             {loading ? "Submitting..." : "Submit Review"}
           </Button>

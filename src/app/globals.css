@@ -123,10 +123,10 @@
 .image-placeholder,
 .title-placeholder,
 .description-placeholder {
-  animation: shimmer 1.5s 0.3s linear infinite forwards;
+  animation: shimmer 3.5s 2.8s linear infinite forwards;
   animation-timing-function: linear;
   background: linear-gradient(to right, rgba(255, 255, 255, 0.2) 8%, #ddd 58%, rgba(255, 255, 255, 0.2) 33%);
-  background-size: 800px 104px; /* Adjust as needed */
+  background-size: 800px 104px; 
   position: relative;
 }
 
@@ -169,3 +169,70 @@
   stroke: orange !important;
   stroke-width: 20px !important;
 }
+
+.hire-form-phone-input .PhoneInputCountry {
+  margin-right: 0; 
+  display: flex; 
+  align-items: center; 
+  background-color: white; 
+  padding: 0 8px; 
+  border-top-left-radius: 6px;    
+  border-bottom-left-radius: 6px; 
+  border: 1px solid #d9d9d9;
+  border-right: none; 
+  height: 44px; 
+  box-sizing: border-box; 
+}
+
+/* Adjust the flag icon itself if needed */
+.hire-form-phone-input .PhoneInputCountryIcon {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  margin-right: 4px; 
+  width: 2em; 
+  height: 2em;
+  box-shadow: none;
+}
+
+/* Ensure the main input field connects nicely */
+.hire-form-phone-input .PhoneInputInput {
+  /* ... keep existing styles like height, padding, font-size ... */
+  border: 1px solid #d9d9d9; /* Ensure it has the default border */
+  border-top-left-radius: 0; /* Remove rounding on the left */
+  border-bottom-left-radius: 0; /* Remove rounding on the left */
+  border-left: none; /* Remove left border to connect visually */
+  height: 44px; /* Match height */
+  box-sizing: border-box;
+}
+
+/* --- Ant Design Form Item Error State Integration --- */
+
+/* When the Form.Item has an error, style the country selector */
+.ant-form-item-has-error .hire-form-phone-input .PhoneInputCountry {
+  border-color: #ff4d4f !important; 
+  border-right: none !important; 
+}
+
+/* When the Form.Item has an error, style the main input */
+.ant-form-item-has-error .hire-form-phone-input .PhoneInputInput,
+.ant-form-item-has-error .hire-form-phone-input .PhoneInputInput:focus,
+.ant-form-item-has-error .hire-form-phone-input .PhoneInputInput:hover {
+  border-color: #ff4d4f !important; 
+  border-left: none !important; 
+  box-shadow: none !important;
+}
+
+.hire-form-phone-input .PhoneInputInput:focus {
+    border-color: #40a9ff; 
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2); 
+    outline: none;
+    border-left: none; 
+    position: relative; 
+    z-index: 1;
+}
+
+.hire-form-phone-input .PhoneInputCountrySelect:focus + .PhoneInputCountryIcon, 
+.hire-form-phone-input .PhoneInputCountrySelect:focus {
+}
+

@@ -40,7 +40,7 @@ const PricingCard = ({ title, amount, service }: PriceProps) => {
         placeholder={null}
         color="gray"
         variant="gradient"
-        className="w-full p-8 bg-glass"
+        className="w-full p-8 bg-glass cursor-pointer hover:scale-[1.02] focus:scale-[1.02] active:scale-100 transition-transform duration-300 ease-in-out"
       >
         <CardHeader
           placeholder={null}
@@ -64,7 +64,7 @@ const PricingCard = ({ title, amount, service }: PriceProps) => {
             className="flex justify-center gap-1 mt-6 font-normal text-7xl"
           >
             <span className="mt-2 text-4xl">$</span>
-            {amount} <span className="self-end text-4xl">/ hr</span>
+            {amount} <span className="self-end text-4xl"></span>
           </Typography>
         </CardHeader>
         <CardBody placeholder={null} className="p-0">
