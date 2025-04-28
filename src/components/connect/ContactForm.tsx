@@ -6,6 +6,8 @@ import { Button, Form, Input } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/utils/motion";
+import toast from "react-hot-toast";
+
 
 const ContactForm = () => {
   const [form] = Form.useForm();
@@ -34,7 +36,7 @@ const ContactForm = () => {
       .then(
         () => {
           setLoading(false);
-          alert(
+          toast.success(
             "Thanks for your message, I will get back to you as soon as possible. Stay Bless!!!"
           );
           setContact({
@@ -47,7 +49,7 @@ const ContactForm = () => {
         },
         (error) => {
           setLoading(false);
-          alert("oops!!! Something went wrong");
+          toast.error("oops!!! Something went wrong");
         }
       );
   };
@@ -60,7 +62,7 @@ const ContactForm = () => {
         variants={fadeIn("up", 0.4)}
       >
         <h1 className="pb-4 text-2xl text-center capitalize">
-         Leave a message for me
+          Leave a message for me
         </h1>
         <Form onFinish={handleSubmit} form={form}>
           <Form.Item
@@ -146,8 +148,10 @@ const ContactForm = () => {
           </Form.Item>
           <Button
             htmlType="submit"
+            disabled={loading}
+            loading={loading}
             type="primary"
-            className="w-full h-12 my-4 text-xl cursor-pointer light-background"
+            className="w-full h-12 my-4 text-xl cursor-pointer light-background disabled:text-white  disabled:cursor-not-allowed"
           >
             {loading ? "Sending..." : "Send Message"}
           </Button>

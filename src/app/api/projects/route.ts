@@ -4,6 +4,16 @@ import { IncomingForm, Files, File } from "formidable";
 import { Readable } from "stream";
 import type { IncomingMessage } from "http";
 import prisma from "@/libs/Prismadb";
+import nodemailer from "nodemailer";
+
+// Create a transporter object using SMTP transport
+const transporter = nodemailer.createTransport({
+  service: "Gmail",
+  auth: {
+    user: process.env.EMAIL_USER!,
+    pass: process.env.EMAIL_PASS!,
+  },
+});
 
 // Helper function to convert NextRequest to Node.js IncomingMessage
 const toIncomingMessage = async (
@@ -202,6 +212,48 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       });
 
       console.log("Project created successfully in DB:", newProject.id);
+
+      try {
+        const mailOptions = {
+          from: `"Project Submission" <${process.env.EMAIL_USER}>`, // Sender address
+          replyTo: email, // Set reply-to to the submitter's email
+          to: process.env.RECIPIENT_EMAIL, // Your email address to receive notifications
+          subject: `New Project Submission: ${fullName}`, // Informative subject
+          text: `
+            New Project Details:
+
+            Full Name: ${fullName}
+            Email: ${email}
+            Phone Number: ${phoneNumber}
+            Budget: ${budget}
+            Company Name: ${companyName || 'N/A'}
+            Company Address: ${companyAddress || 'N/A'}
+            Project Details:
+            ${detail}
+          `,
+          html: `
+            <h2>New Project Submission</h2>
+            <p><strong>Full Name:</strong> ${fullName}</p>
+            <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+            <p><strong>Phone Number:</strong> ${phoneNumber}</p>
+            <p><strong>Budget:</strong> ${budget}</p>
+            <p><strong>Company Name:</strong> ${companyName || 'N/A'}</p>
+            <p><strong>Company Address:</strong> ${companyAddress || 'N/A'}</p>
+            <hr>
+            <p><strong>Project Details:</strong></p>
+            <p style="white-space: pre-wrap;">${detail}</p>
+          `,
+        };
+
+        await transporter.sendMail(mailOptions);
+        console.log(`Email notification sent successfully for project ${newProject.id}`);
+
+      } catch (emailError: any) {
+         // Log email error but don't fail the whole request if project was created
+        console.error(`Failed to send email notification for project ${newProject?.id || 'unknown'}:`, emailError);
+        // Optionally, you could add some logging to a dedicated error tracking service here
+      }
+  
 
       const response = NextResponse.json(
         {
