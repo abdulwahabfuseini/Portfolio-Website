@@ -164,7 +164,7 @@ const HireForm = () => {
             countryCallingCodeEditable={false}
             defaultCountry="GH"
             placeholder="Enter phone number"
-            className="hire-form-phone-input"
+            className="hire-form-phone-input text-base"
             value={phoneNumberValue}
             onChange={(value: string | undefined) => {
               form.setFieldsValue({ phoneNumber: value });
