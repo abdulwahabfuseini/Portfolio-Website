@@ -31,7 +31,7 @@ const AccordionTab = () => {
             <div className="flex text-lg flex-col text-left items-start">
               MOVING HEALTH - ACCRA, GHANA
               <p className="text-sm">ROLE: FULL-STACK DEVELOPER</p>
-              <p className="text-sm">APRIL, 2023 - TO DATE</p>
+              <p className="text-sm">APRIL, 2024 - TO DATE</p>
             </div>
             <button className="text-xl">
               {open === 1 ? <FaChevronUp /> : <FaChevronDown />}

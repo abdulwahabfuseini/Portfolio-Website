@@ -41,7 +41,7 @@ const AboutMe = () => {
         initial="hidden"
         whileInView={"show"}
         variants={fadeIn("up", 0.3)}
-        className="grid max-w-xl grid-cols-2 gap-3 px-6 mx-auto sm:grid-cols-4 sm:bg-glass place-content-center sm:p-1"
+        className="grid max-w-xl grid-cols-2 gap-3 px-6 mx-auto sm:grid-cols-4 sm:bg-glass place-content-center sm:p-0"
       >
         <button
           onClick={() => setFilter("Background")}
