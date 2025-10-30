@@ -145,24 +145,25 @@ export const PortFolio = [
       { tool: "TailwindCSS" },
     ],
   },
-  // {
-  //   id: 10,
-  //   imgUrl: "pro5.png",
-  //   projectName: "International Trade Properties",
-  //   code: "https://github.com/abdulwahabfuseini/international-trade-properties",
-  //   link: "international-trade-properties.vercel.app",
-  //   connect: "link.png",
-  //   desc: "E-commerce Website made with",
-  //   tools: [
-  //     { tool: "React.js" },
-  //     { tool: "React Redux" },
-  //     { tool: "JavaScript" },
-  //     { tool: "Firebase" },
-  //     { tool: "TailwindCSS" },
-  //   ],
-  // },
+  {
+    id: 10,
+    imgUrl: "young.png",
+    projectName: "Young's Collections",
+    code: "https://github.com/abdulwahabfuseini/youngs-collection",
+    link: "https://youngs-collection.vercel.app/",
+    connect: "link.png",
+    desc: "E-commerce Website made with",
+    tools: [
+      { tool: "Next.js" },
+      { tool: "NextAuth" },
+      { tool: "TypeScript" },
+      { tool: "React Redux" },
+      { tool: "TailwindCSS" },
+      { tool: "MongoDB" },
+      { tool: "cloud.google" },
+    ],
+  },
 ];
-
 
 export const ProjectData = [
   {
@@ -170,7 +171,6 @@ export const ProjectData = [
     imgUrl: "pro6.png",
     projectName: "Ghana.Gov Clone",
     link: " https://ghana-gov-2a6e6.web.app",
-
   },
   {
     id: 2,
@@ -192,8 +192,8 @@ export const ProjectData = [
   },
   {
     id: 5,
-    imgUrl: "quiz.png",
-    projectName: "Quiz App",
-    link: "https://quiz-app-gray-rho-26.vercel.app/",
+    imgUrl: "young.png",
+    projectName: "Young's Collections",
+    link: "https://youngs-collection.vercel.app/",
   },
-]
+];
