@@ -17,7 +17,7 @@ const HomeProjects = () => {
   return (
     <section id="latest-projects">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <HeadTitle title="LATEST PROJECTS" text="Portfolio" />
+        <HeadTitle title="PROJECTS" text="Portfolio" />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 py-4">
           {displayedProjects.map((item, index) => (
@@ -38,11 +38,9 @@ const HomeProjects = () => {
             </motion.div>
           ))}
 
-          {/* View All Projects Button - Designed as a prominent CTA card */}
           <motion.button
             initial="hidden"
             whileInView={"show"}
-            // Match the last card's animation delay
             variants={fadeIn("up", (displayedProjects.length - 1) * 0.1 + 0.1)}
             viewport={{ once: true, amount: 0.2 }}
             onClick={() => router.push("/projects")}
